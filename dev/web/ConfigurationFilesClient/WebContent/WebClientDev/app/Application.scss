@@ -1,0 +1,103 @@
+/*
+ *  This file can be used to set variables and supply global styling.  View specific 
+ *  styling should be located the view's corresponding scss file.
+ */
+$enable-font-awesome: dynamic(true);
+
+@include extjs-window-ui(
+$ui: 'dialog',
+$ui-header-background-color: #B42E34,
+$ui-header-border-color:#B42E34,
+$ui-header-border-width:0px,
+$ui-border-width: 1px,
+$ui-header-color: white
+);
+
+@include extjs-label-ui(
+$ui:'label-grey-20',
+$ui-font-family:'Open Sans',
+$ui-font-size:20px,
+$ui-font-color :red
+);
+
+@include extjs-button-small-ui(
+$ui: 'red-button-border-radius',
+$background-color :#B42E34,
+$background-color-over: #BB4348,
+$color :white,
+$border-color :#B42E34,
+$font-size:14px,
+$border-radius:5px
+);
+
+.delete-icon {
+  display: inline-block;
+  width: 22px!important;
+  height: 22px!important;
+  //color: black!important;
+  background: url(get-resource-path('icons/ico_toolbar_delete.svg'))!important;
+  background-repeat: no-repeat;
+}
+.edit-icon {
+  display: inline-block;
+  width: 22px!important;
+  height: 22px!important;
+  //color: black!important;
+  background: url(get-resource-path('icons/ico_toolbar_edit.svg'))!important;
+  background-repeat: no-repeat;
+}
+
+.grid-cls .x-grid-row .x-grid-cell {
+  border-style:  none !important
+}
+
+.grid-cls .x-grid-item-selected {
+  background-color: rgba(115,127,149,0.4)
+}
+
+.grid-cls  .x-column-header-inner-empty .x-column-header-text-container{
+  background-color: transparent !important;
+}
+
+.grid-cls  .x-grid-header-ct .x-column-header-checkbox:after {
+  color: #f9f9f9;
+}
+
+.grid-cls .x-grid-header-ct .x-column-header-checkbox {
+  // margin-left: 3px;
+}
+
+.grid-cls .x-column-header-over, .grid-cls .x-column-header-open{
+  background-color: #616873;
+}
+
+.grid-cls .x-column-header-trigger{
+  background-color: #616873;
+  border-left: none;
+}
+
+.grid-cls .x-column-header-trigger:before{
+  color: #f9f9f9;
+}
+.red-circle-icon{
+  width: 30px!important;
+  height: 30px!important;
+  background-image: url(get-resource-path('icons/redCircle.svg'))!important;
+}
+
+.red-circle-text{
+  color: white!important;
+  font-size: 18px!important;
+  font-weight: bold!important;
+}
+
+.partialText{
+  color: #B42E34!important;
+  font-size: 14px!important;
+  font-style: italic !important;
+  top: 40px !important;
+}
+
+.header-margin-b{
+  top: 20px !important;
+}

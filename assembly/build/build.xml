@@ -1,0 +1,11 @@
+<project basedir="." default="default">
+<property file="../../../config/build.properties"/>
+<property name="required.jdk.version" value="1.5"/>
+
+<property name="INCLUDE_TEST_CODE" value="false"/>
+<property name="INCLUDE_JAVADOC" value="false"/>
+
+<import file="${antbase.dir}/common.xml"/>
+
+</project>
+

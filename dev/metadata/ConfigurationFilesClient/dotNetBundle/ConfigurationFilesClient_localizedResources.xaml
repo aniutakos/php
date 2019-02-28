@@ -1,0 +1,145 @@
+{
+    "language": "en",
+
+	"BackupRestoreView":
+	{
+		"Title" : "Backup & Restore",
+		
+		"BackupFilesView":
+		{
+		    "NoElementSelected": "No Network Element selected. <BR>To see configuration files, please select one Network Element on the left.",
+		    "MultipleElementSelected": "Multiple Network Elements selected. <BR>To see configuration files, please select one Network Element on the left.",
+		    "NoFilesFound": "No files found",
+		    "Compare": "Compare...",
+		    "CompareFiles": "Compare Files",
+		    "CompareTip": "Compare Files",
+            "ShowFile": "Open File",
+            "DownloadFile": "Download File",
+            "Download": "Download",
+            "RestoreFile": "Restore File",
+            "Open": "Open",
+            "Restore": "Restore",
+            "Delete": "Delete",
+            "DeleteFiles": "Delete Files",
+            "Refresh": "Refresh",
+            "AutoRefresh": "Auto Refresh",
+            "DragTheRowMsg": "Please drag the selected row{1} into the 'Compare Files'",
+            "DragFile1Here": "Drag file 1 here…",
+            "DragFile2Here": "Drag file 2 here…",
+            "CompareFile1": "Compare File 1",
+            "CompareFile2": "Compare File 2",
+            "FilesDeletedSuccessfully": "The files were deleted successfully",
+            "AreYouSureDelete" : "The files will be permanently deleted from the server.<BR>Are you sure you want to delete these files?",
+            "AlarmSource" : "Alarm",
+            "ManualSource" : "Manual",
+            "ScheduleSource" : "Scheduler",
+            "BackupFilesFoundCount": "files found",
+			"OperationFailedMsg": "Failed",
+			"OperationSucceededMsg": "Succeeded",
+			"Backup": "Backup",
+			"OperationError" : "Operation Error",
+			"OperationInProgressErrorMsg" : "Operation already in progress for selected Network Element",
+			"InProgress" : "In Progress",
+			"StatusTooltipDateTimeLabel" : "Date&Time",
+			"StatusTooltipFileTypeLabel" : "File Type",
+			"StatusTooltipMessageLabel" : "Message",
+			"RestoreUserWarningMessage" : "Are you sure you want to restore NE with file {0}?",
+		},
+		"NetworkElementView":
+		{
+		    "Title":"Network Elements",
+		    "Startup":"Startup",
+		    "Running":"Running",
+		    "SearchEmptyText":"Search NE",
+		    "SelectAll":"Select All",
+		    "PartialResult":"Partial Result",
+		    "BackupTooltip":"Backup",
+			"BackupNoNesSelectedToolTip" : "To backup, please select required NEs",
+			"BackupNoFileTypesForSelectedNesToolTip" : "No backup file types defined for the NE",
+			"BackupNoCommonCommandsForSelectedNesToolTip" : "No backup file types valid for all selected NEs"
+		},
+	},
+	"JobDetailsContainerView":{
+		"noJobSelectedMessage":"No job selected.<BR>To see job details, please select one job on the left or create a new job.",
+		"multipleJobsSelectedMessage":"Multiple jobs selected.<BR>To see job details, please select one job on the left",
+		"saveJobMessage":"Do you want to save the job details"
+	},
+	"CompareFileWindowView":{
+		"Previous":"Previous",
+		"Next":"Next",
+		"Updated":"Updated",
+		"Added":"Added",
+		"Deleted":"Deleted",
+		"Compare":"Compare"
+
+	},
+	"JobsView":
+	{
+	    "Title": "Jobs",
+	    "JobsListNavigatorView":
+	    {
+	        "Title":"All Jobs"
+	    },
+		"JobDynamicRuleView":
+		{
+			"DefineCriteria": "Define Criteria",
+			"Preview":"Preview"			 
+		},
+	    "JobDefinitionPanel":
+		{
+			"Title": "Job Definition",
+			"BackupJobTitle":"Backup Job",
+			"JobNameLabel":"Job Name",
+			"ConfigFileTypeLabel":"Configuration File Type",
+			"DescriptionLabel":"Description",
+			"AddNesText":"Add NEs",
+			"Delete":"Delete NEs",
+			"selectedNEs":"Selected NEs"				 
+		},
+		"JobSchedulePanel":
+		{
+			"Title": "Job Schedule",
+			"ScheduleType": "Schedule Type",
+			"Every":"Every",
+			"Interval":"Interval",
+			"StartDateTime":"Start Date & Time",
+			"End":"End",
+			"NoEndDate":"No End Date",
+			"EndAfter":"End After",
+			"EndBy":"End By",
+			"Occurances":"Occurrences",
+			"DateTime":"Date & Time",
+			"Weekdays": "Days",
+			"SundayShort" : "Su",
+			"MondayShort" : "Mo",
+			"TuesdayShort" : "Tu", 
+			"WednesdayShort" : "We",
+			"ThursdayShort" : "Th",
+			"FridayShort" : "Fr",
+			"SaturdayShort" : "Sa",
+			"ScheduleTypeOnce" : "Once",
+			"ScheduleTypeRecurring" : "Recurrence every X time",
+			"ScheduleTypeDayOfWeek" : "Day of week",
+			"InvalidDateTimeValue" : "{0} is not a valid date time - it must be in the format dd/mm/yyyy hh:mm",
+			"ExpectedDateTimeValue" : "Expected date format dd/mm/yyyy hh:mm",
+			"ScheduleIntervalMinutes" : "Minutes",
+			"ScheduleIntervalHours" : "Hours",
+			"ScheduleIntervalDays" : "Days",
+			"ScheduleIntervalWeeks" : "Weeks",
+			"ScheduleIntervalMonths" : "Months",
+			"ScheduleIntervalYears" : "Years",
+		}
+
+	},
+
+    "Common":
+    {
+        "Delete": "Delete",
+		"Cancel": "Cancel",
+		"Apply": "Apply",
+		"Today": "Today",
+		"Yes" : "Yes",
+		"No" : "No"
+    }
+
+}

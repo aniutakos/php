@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	   targetNamespace="http://bcapi_server.rs.bcapi.teoco.com/xsd"
+           xmlns="http://bcapi_server.rs.bcapi.teoco.com/xsd"
+	   xmlns:jcore="http://common.rs.jcore.teoco/xsd"
+           elementFormDefault="qualified">
+
+    <xs:import schemaLocation="./JCoreRSCommon.xsd" namespace="http://common.rs.jcore.teoco/xsd"/>
+
+    <!-- ####### ConfigurationFilter types -->
+    <xs:complexType name="ConfigurationFilterType">
+        <xs:sequence>
+            <xs:element name="expression" type="ExpressionType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ExpressionType">
+        <xs:sequence>
+            <xs:element name="operator" type="LogicalOperator"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Identifier">
+        <xs:attribute name="name" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="Operand">
+        <xs:choice>
+            <xs:element name="conditionOperator" type="ConditionOperator" minOccurs="0"/>
+            <xs:element name="logicaOperator" type="LogicalOperator" minOccurs="0"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="ConditionOperator">
+        <xs:sequence>
+            <xs:element name="identifier" type="Identifier" minOccurs="1"/>
+            <xs:element name="literal" type="jcore:AnyType" minOccurs="0"/>
+        </xs:sequence>
+        <!--possible values: eq, neq, gt .. . see  BCAPIOperatorType-->
+        <xs:attribute name="operatorType" type="BCAPIOperatorType" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="LogicalOperator">
+        <xs:sequence>
+            <xs:element name="operand1" type="Operand" minOccurs="1"/>
+            <xs:element name="operand2" type="Operand" minOccurs="0"/>
+        </xs:sequence>
+
+        <!--possible values: OR, AND, NOT .. . see  BCAPIOperatorType-->
+        <xs:attribute name="operatorType" type="BCAPIOperatorType" use="required"/>
+    </xs:complexType>
+
+    <xs:simpleType name="BCAPIOperatorType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="AND"/>
+            <xs:enumeration value="OR"/>
+            <xs:enumeration value="NOT"/>
+            <xs:enumeration value="EQ"/>
+            <xs:enumeration value="EQ_IC"/>
+            <xs:enumeration value="NE"/>
+            <xs:enumeration value="GT"/>
+            <xs:enumeration value="GE"/>
+            <xs:enumeration value="LT"/>
+            <xs:enumeration value="LE"/>
+            <xs:enumeration value="IN"/>
+            <xs:enumeration value="IS_NULL"/>
+            <!-- Not Supported xs:enumeration value="BETWEEN"/ -->
+            <xs:enumeration value="LIKE"/>
+            <xs:enumeration value="LIKE_IC"/>
+            <xs:enumeration value="BEGIN_WITH"/>
+            <xs:enumeration value="END_WITH"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>
+

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="ConfigurationFilesClient"  version="10.2.0.0" multiEar="true"
+	xsi:noNamespaceSchemaLocation="http://w2k-cardev.tti-telecom.com:2000/jcore/schema/application_cfg-7.0.xsd"  >
+	<References>
+		<WebContext name="ConfigurationFilesClientContext" war="ConfigurationFilesClient.war">/ConfigurationFilesClient</WebContext>
+	</References>
+	<Properties>		
+	<Property name="max.search.networkelemets" type="int" public="true">
+		<Value>500</Value>
+		<Description summary="Defines the server network elements retrieve limit" />
+    	</Property>
+		
+		<Property name="max.files.backupFiles" type="int" public="true">
+		<Value>500</Value>
+		<Description summary="Defines the number of backup files limit" />
+    	</Property>
+		
+		<Property name="StatusIndicationsRefreshIntervalSeconds" type="int" public="true">
+		<Value>60</Value>
+		<Description summary="Defines the interval to which refresh the Network Elements list" />
+    	</Property>
+		
+		<Property name="RunScriptTimeoutSeconds" type="int" public="true">
+		<Value>30</Value>
+		<Description summary="Defines the timeout for the backup/restore operations' script" />
+    	</Property>
+		
+		<Property name="CheckScriptExecutionStatusIntervalSeconds" type="int" public="true">
+		<Value>1</Value>
+		<Description summary="Defines the interval for the backup/restore operations' script status update" />
+    	</Property>
+		
+		<Property name="CheckScriptLongExecutionStatusIntervalSeconds" type="int" public="true">
+		<Value>10</Value>
+		<Description summary="Defines the interval for the secondary backup/restore operations' script status update" />
+    	</Property>
+		
+		
+	</Properties>
+	<UserProperties>
+		<UserProperty name="Layout" kind="multi-entry">
+			<Description summary="Layout"/>
+		</UserProperty>
+	</UserProperties>
+	<Dependencies>	
+		<RequiredJ2EEApp name="BCAPI" sameEAR="false">
+		      <Version number="10.2.0.0"/>
+		</RequiredJ2EEApp>	
+		<RequiredJ2EEApp name="ConfigurationFilesServer" sameEAR="false">
+		      <Version number="10.2.0.0"/>
+		 </RequiredJ2EEApp>
+		 <RequiredJ2EEApp name="SecureAccessMT" sameEAR="false"> 
+		       <Version number="10.2.0.0"/> 
+		 </RequiredJ2EEApp>	 
+	</Dependencies>	 
+</Application>
+	
+
+

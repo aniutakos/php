@@ -1,0 +1,113 @@
+
+
+
+
+@include extjs-button-large-ui(
+    $ui: 'delete-button',
+    $background-color :transparent,
+    $color :white,
+    $border-color :transparent,
+    $icon-size:60px
+    );
+    
+    .plus-icon {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      background: url(get-resource-path('icons/ico_treePlus.svg'))!important;
+    }
+    
+    .minus-icon {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      background: url(get-resource-path('icons/ico_treeMinus.svg'))!important;
+    }
+    .AddNesHeader{
+      background-color: white;
+      font-family: 'Open Sans';
+      font-size: 16px;
+      color: #4D4D4D !important;
+    }
+    .AddNesMainHeader{
+      font-family: 'Open Sans';
+      font-size: 16px;
+      //color: white !important;
+    }
+
+    .x-panel-header-title-default .AddNesHeader{
+      color: #4D4D4D !important;
+    }
+    
+    .delete-icon {
+      cursor: pointer!important;
+      background-size: 28px;
+      margin-top: 4px!important;
+      background-repeat: no-repeat;
+      background-image: url(get-resource-path('icons/delete.svg'))!important;
+    }
+    
+    .delete-icon-disabled {
+      cursor: pointer!important;
+      background-size: 28px;
+      margin-top: 4px!important;
+      background-repeat: no-repeat;
+      background-image: url(get-resource-path('icons/delete.svg'))!important;
+      opacity: 0.5;
+    }
+    
+    .hide-icon
+    {
+      background:none;
+    }
+    
+    /*.enttree .x-tree-elbow-img{
+      content: '';
+      width:0px!important;
+    }
+    
+    .enttree .x-tree-checkbox{
+      content: '';
+      width:0px!important;
+    }*/
+    
+    .enttree .x-tree-elbow-plus:before, .x-tree-elbow-end-plus:before{
+      content: '';
+      width:0px!important;
+    }
+    .enttree .x-tree-icon-parent-expanded:before{
+      content: '';
+      width:0px!important;
+    }
+    .enttree .x-tree-icon-parent:before{
+      content: '';
+      width:0px!important;
+    }
+    
+    .enttree .x-tree-icon-leaf:before{
+      content: '';
+      width:0px!important;
+    }
+    
+    .enttree .x-grid-tree-node-expanded .x-tree-elbow-plus:before, .x-grid-tree-node-expanded .x-tree-elbow-end-plus:before{
+      content: '';
+      width:0px!important;
+    }
+    
+    .enttree .x-tree-node-text{
+      margin-left: -40px!important;
+    }
+    
+    .enttree .x-grid-row .x-grid-cell-selected{
+      background-color:#4F555F!important;
+      color: white!important;
+    
+    }
+    
+    .enttree .x-grid-with-row-lines .x-grid-item{
+      border-left-width: 1px!important;
+      border-right-width: 2px!important;
+    }
+    
+    
+    

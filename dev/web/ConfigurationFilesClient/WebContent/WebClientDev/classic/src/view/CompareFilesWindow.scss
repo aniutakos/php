@@ -1,0 +1,273 @@
+@include extjs-button-small-ui(
+$ui: 'compare-previous-next-button',
+$border-radius:5px,
+$background-color : white,
+$color:rgba(0,0,0,0.75),
+$width:96px,
+$height:24px,
+$background-color-pressed : white,
+$border-color : #72777f,
+$padding:2,
+);
+.compareDataFields{
+    margin-top:4px!important;
+}
+
+.compare-toolbar{
+    background-color: rgba(0,0,0,0.1);
+}
+.compare-toolbar-line .x-surface-canvas{
+    background-color: rgba(0,0,0,0.1);
+}
+
+.compare-previous-next-button{
+    height: 24px!important;
+    width: 96px!important;
+    text-align: center;
+    padding: 2px!important;
+}
+.greenCell{
+    background-color: rgb(230, 255 , 230);
+    font-family: 'Open Sans';
+    font-size: 12px;
+    border-left: thin solid;
+    border-right: thin solid; 
+    border-color:white!important; 
+}
+.redCell{
+    background-color: rgb(255, 190 , 190);
+    font-family: 'Open Sans';
+    font-size: 12px;
+    border-left: thin solid;
+    border-right: thin solid; 
+    border-color:white!important; 
+}
+.yellowCell{
+    background-color: rgb(240, 205 , 140);
+    font-family: 'Open Sans';
+    font-size: 12px;
+    border-left: thin solid;
+    border-right: thin solid; 
+    border-color:white!important; 
+}
+.grayCell{
+    background-color: rgb(230, 230 , 230);
+    //background-color: black;
+    font-family: 'Open Sans';
+    border-left: thin solid;
+    border-color:white!important; 
+    border-right: thin solid; 
+    font-size: 12px;
+}
+.whiteCell{
+    background-color: white;
+    font-family: 'Open Sans';
+    font-size: 12px;
+    margin: 10;
+    border-left: thin solid;
+    border-right: thin solid; 
+    border-color:white!important; 
+}
+
+.table {
+    border-collapse: collapse;
+    table-layout:fixed;
+    overflow-wrap: break-word;
+}
+.x-grid-with-col-lines .x-grid-cell .compare-grid {
+    border-color:  white !important;
+    white-space:normal !important;
+  }
+
+.compare-changed-icon {
+    display: inline-block;
+    width: 18px!important;
+    height: 20px!important;
+    border:none!important;
+    background: url(get-resource-path('icons/compare_changed.svg'))!important;
+    background-repeat: no-repeat;
+  }
+  .compare-previous-icon {
+    display: inline-block;
+    width: 16px!important;
+    height: 16px!important;
+    border:none!important;
+    background: url(get-resource-path('icons/compare_previous.svg'))!important;
+    background-repeat: no-repeat;
+  }
+  .compare-icon {
+    display: inline-block;
+    width: 22px!important;
+    height: 22px!important;
+    border:none!important;
+    background: url(get-resource-path('icons/compare_tbar.svg'))!important;
+    background-repeat: no-repeat;
+  }
+  .compare-next-icon {
+    display: inline-block;
+    width: 16px!important;
+    height: 16px!important;
+    border:none!important;
+    background: url(get-resource-path('icons/compare_next.svg'))!important;
+    background-repeat: no-repeat;
+  }
+  .compare-grid-cls {
+    border-style:  none !important;
+    white-space: nowrap;
+  }
+
+  .compare-grid-cls td{
+    white-space: nowrap;
+}
+
+  .compare-grid .x-grid-cell-inner{
+    padding: 3px 3px 3px  !important;
+    white-space: normal;
+  }
+  .RemoveLine
+{
+    border-width:0px !important;
+}
+
+  .diffTable td{
+      padding: 10px;
+      margin: 10px;
+  }
+  .diffTable cellpadding td {
+      padding:20px
+    }
+  .compare-deleted-icon {
+    display: inline-block;
+    width: 18px!important;
+    border:none!important;
+    height: 20px!important;
+    background: url(get-resource-path('icons/compare_deleted.svg'))!important;
+    background-repeat: no-repeat;
+  }
+  .compare-added-icon {
+    display: inline-block;
+    width: 18px!important;
+    border:none!important;
+    height: 20px!important;
+    background: url(get-resource-path('icons/compare_added.svg'))!important;
+    background-repeat: no-repeat;
+  }
+
+  .hideHeader{
+      height: 0!important;
+  }
+// th, td {
+//     padding: 10px;
+// }
+.compare-header{
+    font-family: 'Open Sans';
+    align-content: left;
+    text-align: left;
+    color:#4D4D4D;
+    background-color: white;
+    font-size: 14px;
+    border:none!important;
+}
+.titleCell{
+    font-family: 'Open Sans';
+    font-size: 16px;
+}
+.greenTableCell{
+    background-color: green;
+    border-left: thin solid;
+    border-right: thin solid; 
+}
+
+.grayTableCell{
+    background-color: gray;
+    border-left: thin solid;
+    border-right: thin solid;
+}
+
+.redTableCell{
+    background-color: red;
+    border-left: thin solid;
+    border-right: thin solid; 
+}
+
+.yellowTableCell{
+    background-color: yellow;
+    border-left: thin solid;
+    border-right: thin solid;
+}
+
+.whiteTableCell{
+    background-color: white;
+    border-left: thin solid;
+    border-right: thin solid;
+}
+
+.greenTableCellTop{
+    background-color: green;
+    border-left: thin solid;
+    border-right: thin solid;
+    border-top: thin solid; 
+}
+
+.grayTableCellTop{
+    background-color: gray;
+    border-left: thin solid;
+    border-right: thin solid;
+    border-top: thin solid;
+}
+
+.redTableCellTop{
+    background-color: red;
+    border-left: thin solid;
+    border-right: thin solid;
+    border-top: thin solid; 
+}
+
+.yellowTableCellTop{
+    background-color: yellow;
+    border-left: thin solid;
+    border-right: thin solid;
+    border-top: thin solid;
+}
+
+.whiteTableCellTop{
+    background-color: white;
+    border-left: thin solid;
+    border-right: thin solid;
+    border-top: thin solid;
+}
+
+.greenTableCellBottom{
+    background-color: green;
+    border-left: thin solid;
+    border-right: thin solid;
+    border-bottom: thin solid;
+}
+
+.grayTableCellBottom{
+    background-color: gray;
+    border-left: thin solid;
+    border-right: thin solid;
+    border-bottom: thin solid;
+}
+
+.redTableCellTopBottom{
+    background-color: red;
+    border-left: thin solid;
+    border-right: thin solid;
+    border-bottom: thin solid; 
+}
+
+.yellowTableCellBottom{
+    background-color: yellow;
+    border-left: thin solid;
+    border-right: thin solid; 
+    border-bottom: thin solid;
+}
+
+.whiteTableCelBottom{
+    background-color: white;
+    border-left: thin solid;
+    border-right: thin solid;
+    border-bottom: thin solid;
+}

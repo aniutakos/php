@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://common.rs.jcore.teoco/xsd" targetNamespace="http://common.rs.jcore.teoco/xsd" elementFormDefault="qualified">
+    <xs:include schemaLocation="JCoreCommon.xsd"/>
+</xs:schema>

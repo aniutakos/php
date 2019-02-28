@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>compare_changed</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="compare_changed" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M10.984,3.7145 C11.874,5.4945 17,15.7305 17,15.7305 C17,15.7305 16.969,16.7305 16,16.7305 L4,16.7305 C3,16.7305 3,15.7305 3,15.7305 C3,15.7305 7.931,5.4745 8.969,3.7615 C9.594,2.7305 10.516,2.7775 10.984,3.7145 Z M9,6.7305 L9,11.7305 L11,11.7305 L11,6.7305 L9,6.7305 Z M9,14.7305 L11,14.7305 L11,12.7305 L9,12.7305 L9,14.7305 Z" id="Combined-Shape" fill="#FAA43A"></path>
+    </g>
+</svg>

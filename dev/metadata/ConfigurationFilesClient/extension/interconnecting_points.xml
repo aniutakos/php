@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<InterConnectingPoints xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://w2k-cardev.tti-telecom.com:2000/jcore/schema/interconnecting_points-4.0.xsd">
+
+<WebServiceInterConnectingPoint name="BCAPIGenricService" accessPointName="BCAPI:BCAPIGenricService" accessPointLocation="Local" />
+<WebServiceInterConnectingPoint name="CFMGenericService" accessPointName="ConfigurationFilesServer:ConfigurationFilesServer" accessPointLocation="Local" />
+<WebServiceInterConnectingPoint name="NciRSIntService" accessPointName="SecureAccessMT:NciRSIntService" accessPointLocation="Local" />
+
+
+</InterConnectingPoints>

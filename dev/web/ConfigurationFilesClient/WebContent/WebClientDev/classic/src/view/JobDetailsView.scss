@@ -1,0 +1,57 @@
+@include extjs-tab-panel-ui(
+$ui: 'jobs-tabs-ui',
+$tab-base-color: white,
+$ui-tab-background-color:white,
+$ui-tab-background-color-active:white,
+$ui-tab-color-active:rgba(0,0,0,0.75),
+$ui-tab-line-height:32px,
+$ui-tab-font-size:14px,
+$ui-tab-color:rgba(0,0,0,0.75),
+$ui-tab-border-radius:5px 5px 0 0
+);
+
+.x-tab-bar-jobs-tabs-ui {
+    background-color: white;
+    
+}
+
+.active-job-toggle{
+    margin-right:30px; 
+}
+.active-job-toggle .x-slider::before{
+    border: none;
+    background-color: transparent!important;
+}
+.ActiveJobTitleCls{
+    font-size: 16px;
+    font-family:'Open Sans';
+    margin: 13px 20px 0px 0px;
+  }
+//.save-job-button-ui
+.save-job-icon {
+    display: inline-block;
+    width: 18px!important;
+    height: 20px!important;
+    background: url(get-resource-path('icons/job_save.svg'))!important;
+    background-repeat: no-repeat;
+  }
+
+.x-tab.x-tab-active.x-tab-jobs-tabs-ui{
+    border-top-width:0px;
+    border-left-width: 0px;
+    border-right-width:0px;
+    border-bottom-width: 3px;
+    border-bottom-color: #B42E34;
+}
+
+.x-tab-jobs-tabs-ui{
+    border-width: 0px;
+}
+.x-tab-over .x-tab-jobs-tabs-ui{
+    color:black!important;
+    background-color: white!important;
+}
+
+.x-tab-over.x-tab-jobs-tabs-ui .x-tab-inner-jobs-tabs-ui {
+    color: black!important;
+}

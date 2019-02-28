@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://cfm_server.rs.cfm.teoco.com/xsd"
+           xmlns="http://cfm_server.rs.cfm.teoco.com/xsd"
+	   xmlns:bcapi="http://bcapi_server.rs.bcapi.teoco.com/xsd"
+           elementFormDefault="qualified">
+
+    <xs:import 
+	   schemaLocation="./JCoreRSCommon.xsd" 
+            namespace="http://common.rs.jcore.teoco/xsd"/>
+	   
+    <xs:import
+        schemaLocation="./BCAPIConfigurationFilter.xsd"
+	namespace="http://bcapi_server.rs.bcapi.teoco.com/xsd"/>
+
+    <xs:complexType name="GetFileRequest">
+        <xs:sequence>
+            <xs:element name="fileName" type="xs:string" />
+            <xs:element name="filePath" type="xs:string" />
+            <xs:element name="isAbsolutePath" type="xs:boolean" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="GetFileResponse">
+        <xs:choice>
+            <xs:element name="failureReason" type="xs:string" />
+            <xs:element name="fileContents" type="xs:string" />
+        </xs:choice>
+    </xs:complexType>
+
+
+    <xs:complexType name="DeleteFilesRequest">
+        <xs:sequence>
+	    <xs:element name="filesToDelete" type="DeleteFileList" >
+	    </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="DeleteFileList">
+        <xs:sequence>
+            <xs:element name="deleteFile" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                    <!-- id: the ID field in COMM_DB.CFM_MAIN -->
+                    <xs:attribute name="id" type="xs:int"/>
+                </xs:complexType>
+	    </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="DeleteFilesResponse">
+        <xs:sequence>
+            <xs:element name="failures" >
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="deleteFile" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <!-- id: the ID field in COMM_DB.CFM_MAIN -->
+                                <xs:attribute name="id" type="xs:int"/>
+                                <xs:attribute name="failureReason" type="xs:string"/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CreateScheduledJobRequest">
+        <xs:sequence>
+	  <xs:element name="job" type="JobDefinition" />
+	  <xs:element name="schedule" type="ScheduleDefinition" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="JobDefinition">
+        <xs:sequence>
+            <xs:element name="selectedNEs">
+                <xs:complexType>
+                    <xs:choice>
+                        <xs:element name="neList" type="xs:string"/>
+                        <xs:element name="neCriteria" type="bcapi:ConfigurationFilterType"/>
+		    </xs:choice>
+                </xs:complexType>
+	    </xs:element>
+        </xs:sequence>
+      <xs:attribute name="name" type="xs:string"/>
+      <xs:attribute name="type" type="xs:string"/>
+      <xs:attribute name="configFileType" type="xs:string"/>
+      <xs:attribute name="description" type="xs:string"/>
+    </xs:complexType>
+
+    <xs:complexType name="ScheduleDefinition">
+        <xs:sequence>
+            <xs:element name="startAt" type="xs:dateTime" />
+	    <xs:element name="reccuring" minOccurs="0">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="iterations" >
+                    <xs:complexType>
+                        <xs:choice>
+                            <xs:element name="iterationNum" type="xs:int"/>
+                            <xs:element name="until" type="xs:dateTime"/>
+		        </xs:choice>
+		    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="interval" >
+                    <xs:complexType>
+                        <xs:choice>
+                            <xs:element name="simple" >
+		                <xs:complexType>
+                                    <xs:attribute name="every" type="xs:int"/>
+                                    <xs:attribute name="timeUnits" type="TimeUnitType"/>
+		                </xs:complexType>
+		            </xs:element>
+                            <xs:element name="weekdays" >
+		                <xs:complexType>
+		                    <xs:sequence>
+                                        <xs:element name="day" type="DaysOfWeek" minOccurs="1" />
+		                    </xs:sequence>
+		                </xs:complexType>
+		            </xs:element>
+                            <xs:element name="monthly" >
+		                <xs:complexType>
+		                    <xs:choice>
+                                        <xs:element name="dayInMonth" type="xs:int" />
+                                        <xs:element name="lastDay" type="xs:boolean" />
+		                    </xs:choice>
+		                </xs:complexType>
+		            </xs:element>
+		        </xs:choice>
+		    </xs:complexType>
+		  </xs:element>
+	        </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+	</xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="TimeUnitType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Years"/>
+            <xs:enumeration value="Months"/>
+            <xs:enumeration value="Weeks"/>
+            <xs:enumeration value="Days"/>
+            <xs:enumeration value="Hours"/>
+            <xs:enumeration value="Minutes"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="DaysOfWeek">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Su"/>
+            <xs:enumeration value="Mo"/>
+            <xs:enumeration value="Tu"/>
+            <xs:enumeration value="We"/>
+            <xs:enumeration value="Th"/>
+            <xs:enumeration value="Fr"/>
+            <xs:enumeration value="Sa"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="CreateScheduledJobResponse">
+        <xs:choice>
+	    <xs:element name="failure" type="JobScheduleOperationFailure" />
+            <xs:element name="jobId" type="xs:string"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="JobScheduleOperationFailure">
+        <xs:attribute name="errorCode" type="xs:string"/>
+        <xs:attribute name="reason" type="xs:string"/>
+    </xs:complexType>
+
+    <xs:complexType name="UpdateScheduledJobRequest">
+        <xs:sequence>
+	  <xs:element name="jobId" type="xs:string" />
+	  <xs:element name="job" type="JobDefinition" />
+	  <xs:element name="schedule" type="ScheduleDefinition" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="UpdateScheduledJobResponse">
+	<xs:sequence>
+	    <xs:element name="failure" type="JobScheduleOperationFailure" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="DeleteScheduledJobRequest">
+        <xs:sequence>
+	  <xs:element name="jobId" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="DeleteScheduledJobResponse">
+	<xs:sequence>
+	    <xs:element name="failure" type="JobScheduleOperationFailure" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SuspendScheduledJobRequest">
+        <xs:sequence>
+	  <xs:element name="jobId" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SuspendScheduledJobResponse">
+	<xs:sequence>
+	    <xs:element name="failure" type="JobScheduleOperationFailure" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ResumeScheduledJobRequest">
+        <xs:sequence>
+	  <xs:element name="jobId" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ResumeScheduledJobResponse">
+	<xs:sequence>
+	    <xs:element name="failure" type="JobScheduleOperationFailure" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

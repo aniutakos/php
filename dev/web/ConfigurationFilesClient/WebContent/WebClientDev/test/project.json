@@ -1,0 +1,27 @@
+{
+    "framework": "jasmine",
+    "libs": [],
+    "coverageFilters": [],
+    "scenarios": [
+        {
+            "libs": [
+                {
+                    "disabled": false,
+                    "path": "/test/WidgetsInfrastructure/lib",
+                    "type": "directory"
+                }
+            ],
+            "coverageFilters": [],
+            "sandbox": false,
+            "profile": "classic",
+            "framework": "jasmine",
+            "launch": true,
+            "globals": "*",
+            "directory": "WidgetsInfrastructure",
+            "name": "Widgets Infrastructure"
+        }
+    ],
+    "pageObjects": [],
+    "subjectUrl": "http://localhost:1841/",
+    "launchAppWatch": true
+}

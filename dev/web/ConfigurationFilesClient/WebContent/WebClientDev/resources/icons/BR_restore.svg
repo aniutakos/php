@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>BR_restore</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="BR_restore" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M7,8 L1,8 L1,2 L3.02509047,2 L3.02509047,4.07760682 C4.69551707,2.1913712 7.15042974,1 9.88709289,1 C14.9200125,1 19,5.02943725 19,10 C19,12.6475182 17.8424877,15.0280345 16,16.6748667 L16,13.5451698 C16.6195601,12.5054209 16.9749095,11.2936945 16.9749095,10 C16.9749095,6.13400675 13.8015859,3 9.88709289,3 C7.47850586,3 5.35052108,4.1865159 4.0697059,6 L7,6 L7,8 Z M4,9 L5,9 L5,18 L13,18 L13,10 L10,10 L10,7 L7.88082027,7 L7.88082027,6 L11,6 L14,9 L14,19 L4,19 L4,9 Z M6,16 L12,16 L12,17 L6,17 L6,16 Z M6,14 L12,14 L12,15 L6,15 L6,14 Z M6,12 L12,12 L12,13 L6,13 L6,12 Z M6,9 L9,9 L9,10 L6,10 L6,9 Z" id="Combined-Shape" fill="#3C424D" fill-rule="nonzero"></path>
+    </g>
+</svg>

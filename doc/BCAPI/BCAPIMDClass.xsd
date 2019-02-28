@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://bcapi_server.rs.bcapi.teoco.com/xsd"
+           xmlns="http://bcapi_server.rs.bcapi.teoco.com/xsd"
+           elementFormDefault="qualified">
+    <xs:include
+        schemaLocation="./BCAPIMDClass.xsd"
+        namespace="http://bcapi_server.rs.bcapi.teoco.com/xsd"/>
+
+    <xs:complexType name="MDClassDefinition">
+        <xs:sequence>
+            <xs:element name="mdClass" type="xs:string"/>
+            <xs:element name="label" type="xs:string"/>
+            <xs:element name="attributes" type="MDClassAttributes" minOccurs="0"/>
+            <xs:element name="projections" type="MDClassProjections" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MDClassAttributes">
+        <xs:sequence>
+            <xs:element name="attributeDefinition" type="AttributeDefinitionType" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AttributeDefinitionType">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="label" type="xs:string"/>
+            <xs:element name="type" type="xs:string"/>
+            <xs:element name="defaultValue" type="xs:string"/>
+            <xs:element name="additionalInfo" type="xs:string"/>
+            <xs:element name="isNullable" type="xs:boolean"/>
+            <xs:element name="allowedValues" type="AllowedValuesType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+        <xs:complexType name="MDClassProjections">
+        <xs:sequence>
+            <xs:element name="projectionDefinition" type="ProjectionDefinitionType" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ProjectionDefinitionType">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="label" type="xs:string"/>
+            <xs:element name="attributesInProjection" type="ProjectionAttributesType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AllowedValuesType">
+        <xs:sequence>
+            <xs:element name="value" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ProjectionAttributesType">
+        <xs:sequence>
+            <xs:element name="attrName" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

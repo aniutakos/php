@@ -1,0 +1,221 @@
+@include extjs-panel-ui ( $ui:'left-panel-ui', $ui-body-background-color:#4F555F, $ui-header-background-color: #4F555F, $ui-header-color:#FFFFFF, $panel-header-glyph-color:white, $ui-header-inner-border-color :#72777f, $ui-header-inner-border-width: 1px 0px 1px 0px);
+@include extjs-panel-ui ( $ui:'left-panel-inner-panel', $ui-body-background-color:rgba(255, 255, 255, 0.1));
+@include extjs-panel-ui ( $ui:'ne-panel', $ui-border-width: 0px, $ui-border-radius: 0px);
+@include extjs-tip-ui ( $ui:'tooltipui', $ui-background-color:white, $ui-body-color:white);
+@include extjs-display-field-ui( $ui:'left-panel-status-ui', $ui-color:rgba(255, 255, 255, 0.5));
+@include extjs-display-field-ui( $ui:'left-panel-title-ui', $ui-font-size:18px, $ui-color:#FFFFFF);
+@include extjs-button-small-ui( $ui: 'ne-button', $background-color :rgba(255, 255, 255, 0.75), $color :black, $font-size: 14px, $border-color :rgba(255, 255, 255, 0.75), $margin: 2px, $border-radius:5px, $arrow-glyph-color:#3C424D);
+.ne-button {
+    display: inline-block;
+    width: 20px!important;
+    height: 20px!important;
+    color: white!important;
+    background: url(get-resource-path('icons/BR_backup_element.svg'))!important;
+    background-repeat: no-repeat;
+}
+
+.ne-panel .x-grid-cell-inner {
+    color: white!important;
+}
+
+.ne-panel .x-grid-item {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.ne-panel .x-grid-item-alt {
+    background-color: rgba(79, 85, 95, 0.5);
+}
+
+.checkButton label.x-form-cb-label {
+    color: #FFFFFF;
+    font: lighter 14px/17px 'Open Sans', sans-serif;
+}
+
+.checkButton span.x-form-checkbox-default {
+    color: white;
+}
+
+.checkButton input[type='radio'],
+input[type='checkbox'] {
+    margin: 0px;
+}
+
+.backup-menu-item .x-menu-item-text-default.x-menu-item-indent-no-separator {
+    margin-left: 8px!important;
+}
+
+@include extjs-text-field-ui( $ui:'settings-text',
+$ui-background-color:rgba(255, 255, 255, 0.75),
+$ui-color:rgba(0, 0, 0, 0.75),
+$ui-font-size:14px);
+.x-form-trigger-settings-text {
+    background: rgba(255, 255, 255, 0.75)!important;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.x-form-trigger-wrap-settings-text {
+    border-width: 0px!important;
+}
+
+.x-form-text-wrap-settings-text {
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+.x-form-text-settings-text:not([role='combobox']) {
+    border-radius: 6px;
+}
+
+.x-form-text-settings-text[role='combobox'] {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.x-form-item-label-inner-settings-text {
+    padding-bottom: 8px!important;
+    font-weight: 200;
+}
+
+.searchField {
+    .x-form-text-wrap {
+        border-radius: 0px;
+    }
+    .x-form-trigger {
+        border-radius: 0px;
+    }
+    input.x-form-field {
+        border-radius: 0px;
+    }
+}
+
+.x-panel-body-ne-panel {
+    background: rgba(79, 85, 95, 0.5) !important; //panel body
+     ::-webkit-scrollbar {
+        width: 11px;
+    }
+     ::-webkit-scrollbar-button {
+        display: none;
+    }
+     ::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: #9ca0a5;
+    }
+     ::-webkit-scrollbar-track-piece {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+}
+
+.attribute-row {
+    background-color: white!important;
+    width: 100%!important;
+    height: auto!important;
+}
+
+.attribute-row-alt {
+    background-color: #F7F7F7!important;
+    width: 100%!important;
+    height: auto!important;
+}
+
+.attribute-name {
+    display: inline-block;
+    color: rgba(0, 0, 0, 0.75)!important;
+    width: 40%!important;
+    vertical-align: top;
+}
+
+.attribute-value {
+    display: inline-block;
+    color: rgba(0, 0, 0, 0.75)!important;
+    width: 60%!important;
+    height: auto!important;
+    vertical-align: middle;
+}
+
+.status-tooltip-label {
+    color: rgba(0, 0, 0, 0.40)!important;
+    font-family: "Open Sans";
+    vertical-align: top;
+    margin-left: 4px;
+}
+
+.status-tooltip-image-label {
+    border: 0px solid black;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    background-size: cover;
+    vertical-align: baseline;
+}
+
+.status-tooltip-value {
+    color: rgba(0, 0, 0, 0.75)!important;
+    font-family: "Open Sans";
+    font-size: 12px;
+    padding-left: 5px;
+    vertical-align: top;
+}
+
+.status-tooltip-header {
+    color: rgba(0, 0, 0, 0.75);
+    font-family: "Open Sans";
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 24px;
+    padding-bottom: 10px;
+}
+
+.status-tooltip-space-column {
+    background: white;
+    width: 10px;
+}
+
+.ne-panel .x-column-header-checkbox,
+.ne-panel .x-column-header-checkbox:after,
+.ne-panel .x-grid-checkcolumn:after {
+    color: white!important;
+}
+
+.ne-panel .x-grid-cell-special {
+    border-color: #5e5e5e!important;
+}
+
+.myStatusIcon .x-grid-cell-inner {
+    padding: 0 !important;
+}
+
+.myStatusIcon .x-grid-dirty-cell>.x-grid-cell-inner:after {
+    color: white !important;
+}
+
+.x-tab-workspace-tabs-ui {
+    border-color: #e4e4e4!important;
+    cursor: pointer;
+}
+
+.x-tab-workspace-tabs-ui-top {
+    border-width: 1px!important;
+    padding: 7px 20px 4px 20px!important;
+}
+
+.x-tab-over.x-tab-workspace-tabs-ui {
+    border-color: #dac0c1;
+    background-image: none;
+    color: black !important;
+    //background-color: rgba(218, 192, 193, 0.08);
+}
+
+.x-tab-over.x-tab-workspace-tabs-ui.x-tab-active {
+    border-color: #000;
+    background-image: none;
+    //background-color: rgba(0, 0, 0, 0.08);
+}
+
+.x-tab-over.x-tab-workspace-tabs-ui .x-tab-inner-workspace-tabs-ui {
+    color: black!important;
+}
+
+.x-tab.x-tab-active.x-tab-workspace-tabs-ui .x-tab-inner-workspace-tabs-ui {
+    color: #fff!important;
+}

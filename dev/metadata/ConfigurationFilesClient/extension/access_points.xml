@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AccessPoints xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://w2k-cardev.tti-telecom.com:2000/jcore/schema/access_points-4.0.xsd">    
+<DotNetAccessPoint name="OpenConfigurationFilesAccessPoint">
+        <Description>Open ConfigurationFiles</Description>
+        <Label>Open ConfigurationFiles</Label>
+        <WarName>ConfigurationFilesClientContext</WarName>
+        <Action>ConfigurationFilesClient:open-CFM</Action>
+        <DotNetApplicationID>ConfigurationFilesClient</DotNetApplicationID>
+        <Path>WebClient/ConfigurationFilesClient/index.html?classic</Path>
+	</DotNetAccessPoint>
+</AccessPoints>

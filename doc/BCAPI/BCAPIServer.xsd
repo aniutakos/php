@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://bcapi_server.rs.bcapi.teoco.com/xsd"
+           xmlns="http://bcapi_server.rs.bcapi.teoco.com/xsd"
+	   xmlns:jcore="http://common.rs.jcore.teoco/xsd"
+           elementFormDefault="qualified">
+   <xs:import 
+	   schemaLocation="./JCoreRSCommon.xsd" 
+            namespace="http://common.rs.jcore.teoco/xsd"/>
+	   
+    <xs:include
+        schemaLocation="./BCAPIConfigurationFilter.xsd"
+        namespace="http://bcapi_server.rs.bcapi.teoco.com/xsd"/>
+    <xs:include
+        schemaLocation="./BCAPIMDClass.xsd"
+        namespace="http://bcapi_server.rs.bcapi.teoco.com/xsd"/>
+
+    <xs:complexType name="QueryParameters">
+        <xs:sequence>
+            <xs:element name="mdClass" type="xs:string"/>
+            <xs:element name="attributes" type="AttributeList" minOccurs="0"/>
+            <xs:element name="projection" type="xs:string" minOccurs="0"/>
+            <xs:element name="filter" type="ConfigurationFilterType" minOccurs="0"/>
+            <!-- Criteria values to be used as params for SP -->
+            <xs:element name="criteria" type="ConfigurationFilterType" minOccurs="0"/>
+            <xs:element name="limit" type="xs:int" minOccurs="0"/>
+            <xs:element name="orderBy" type="xs:string" minOccurs="0"/>
+            <xs:element name="ignoreCache" type="xs:boolean" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="QueryResult">
+        <xs:sequence>
+            <!-- partial is relevant only if the optional parameter limit was set and the number of result rows excceeded it. -->
+            <xs:element name="partial" type="xs:boolean" default="false"/>
+            <xs:element name="columns" minOccurs="0" maxOccurs="unbounded" nillable="false" type="ColumnObject"/>
+            <xs:element name="resultSet" >
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="row" minOccurs="0" maxOccurs="unbounded" type="ArrayOfObject"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="GetValuesBySubstringsRequest">
+        <xs:sequence>
+            <xs:element name="searchString" type="xs:string" />
+	    <!-- The default is a space -->
+            <xs:element name="delimiter" type="xs:string" minOccurs="0"/>
+            <xs:element name="searchAttributes" type="AttributeList" minOccurs="0"/>
+            <xs:element name="searchProjection" type="xs:string" minOccurs="0"/>
+	    <!-- the default is false. Meaning - case insensivite -->
+            <xs:element name="caseSensitive" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="getValuesParameters" type="QueryParameters" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="GetValuesBySubstringsResponse">
+        <xs:choice>
+            <xs:element name="failureReason" type="xs:string" />
+            <xs:element name="result" type="QueryResult" />
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="SetValues">
+        <xs:sequence>
+            <xs:element name="mdClass" type="xs:string"/>
+            <xs:element name="attributeValues" type="AttributeValueList"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="UpdateValues">
+        <xs:sequence>
+            <xs:element name="mdClass" type="xs:string"/>
+            <xs:element name="filter" type="ConfigurationFilterType" minOccurs="0"/>
+            <xs:element name="attributeValues" type="AttributeValueList"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SetResult">
+        <xs:sequence>
+            <xs:element name="status" type="ResponseStatusType"/>
+            <xs:element name="errorMsg" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Convert2SqlRequest">
+        <xs:sequence>
+            <xs:element name="mdClass" type="xs:string"/>
+            <xs:element name="attributes" type="AttributeList" minOccurs="0"/>
+            <xs:element name="projection" type="xs:string" minOccurs="0"/>
+            <xs:element name="filters" minOccurs="0" >
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="filter" minOccurs="0" maxOccurs="unbounded" type="ConfigurationFilterType"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="orderBy" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Convert2SqlResult">
+        <xs:sequence>
+            <xs:element name="sql" type="xs:string"/>
+            <xs:element name="errorMsg" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="UpdateResult">
+        <xs:sequence>
+            <xs:element name="status" type="ResponseStatusType"/>
+            <xs:element name="errorMsg" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="ResponseStatusType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SUCCEEDED"/>
+            <xs:enumeration value="FAILED"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <xs:complexType name="AttributeValueList">
+        <xs:sequence>
+            <xs:element name="attributeValue" type="AttributeValueType" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AttributeValueType">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="value" type="jcore:AnyType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AttributeList">
+        <xs:sequence>
+            <xs:element name="attributeName"  type="xs:string" minOccurs="1" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ColumnObject">
+        <xs:attribute name="name" type="xs:string"/>
+        <xs:attribute name="dataType" type="xs:string"/>
+    </xs:complexType>
+
+    <xs:complexType name="ArrayOfObject">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="item" nillable="true" type="jcore:AnyType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="GetMDClass">
+        <xs:sequence>
+            <xs:element name="mdClass" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="GetMDClassResult">
+        <xs:sequence>
+            <xs:element name="status" type="ResponseStatusType"/>
+            <xs:element name="errorMsg" type="xs:string" minOccurs="0"/>
+            <xs:element name="mdClass" type="MDClassDefinition" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="GetDeletedEntitiesByEntityNames">
+        <xs:sequence>
+            <xs:element name="sinceWhen" type="xs:long"/>
+            <xs:element name="entityNames" type="NameList" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="NameList">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="entityName" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="GetDeletedEntitiesByEntityNamesResult">
+        <xs:sequence>
+            <xs:element name="entityList" type="EntityListType"/>
+            <xs:element name="relationList" type="RelationListType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="EntityListType">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="objectID" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="RelationListType">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="relationID" type="RelationIDType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="RelationIDType">
+        <xs:sequence>
+            <xs:element name="objectID1" type="xs:int"/>
+            <xs:element name="objectID2" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="RefreshMDClass">
+        <xs:sequence>
+            <xs:element name="mdClassName" type="xs:string"/>
+            <xs:element name="isPattern" type="xs:boolean" default="true" />
+            <xs:element name="reload" type="xs:boolean" default="false" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="RefreshMDClassResult">
+        <xs:sequence>
+            <xs:element name="status" type="ResponseStatusType"/>
+            <xs:element name="errorMsg" type="xs:string" minOccurs="0"/>
+            <xs:element name="FailedClasses" minOccures="0" >
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="className" type="xs:string"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

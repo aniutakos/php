@@ -1,0 +1,106 @@
+<project basedir="." default="default">
+<property name="JSP_COMPILATION" value="do_not_compile"/>
+    <property file="../../../../../config/build.properties"/>
+    <property name="required.jdk.version" value="1.5"/>
+    <import file="${antbase.dir}/common.xml"/>
+    <property name="view_dir" value="../../../../../../.."/>
+
+    <!--<property file="${view_dir}/3rdparty/release/${target.server}/delivery/lib"/>-->
+
+
+    <property name="3rdparty" value="${view_dir}/3rdparty/release/${target.server}/delivery/lib"/>
+    <property name="3rdparty.development" value="${view_dir}/3rdparty/release/${target.server}/development/lib"/>
+    <property name="jcore" value="${view_dir}/netrac2_j2ee/jcore_mt/release/${target.server}/delivery/lib"/>
+
+    <path id="third.party.jars" />
+    <path id="websphere.container.jars">
+    </path>
+    <path id="weblogic.container.jars" />
+    <path id="tti.internal.jars"/>
+    <path id="project.dependencies"/>
+    
+    
+	<target name="after-build" >
+		<path id="p"> 
+			<fileset  dir="${outdir.proj}/dev/lib">
+				<include name="*.war"/>
+			</fileset>
+		</path> 
+		<property name="warFile" refid="p"/>
+		<mkdir dir="${outdir.proj}/dev/lib/tmp" />
+		<unzip src="${warFile}" dest="${outdir.proj}/dev/lib/tmp" />
+		
+		<antcall target="unzip-help"/>
+		<antcall target ="build-sencha"/>
+		<antcall target ="create-output"/>
+		
+		<!-- Creating updated war file -->
+		<delete file="${warFile}" />
+		
+		<zip destfile="${warFile}" basedir="${outdir.proj}/dev/lib/tmp" />
+		<delete dir="${outdir.proj}/dev/lib/tmp" />
+		
+	</target>
+	
+	
+	<target name="unzip-help" >
+		<for param="zipFile">
+		<path id="pt"> 
+			<fileset  dir="${outdir.proj}/dev/lib/tmp/help/">
+				<include name="*.zip"/>
+			</fileset>
+		</path> 
+		<sequential>	
+		<!-- Unzipping help files zip -->
+		<if>
+		
+			<available file="@{zipFile}"/>
+			<then>
+				<unzip src="@{zipFile}" dest="${outdir.proj}/dev/lib/tmp/help" />                              
+				<delete file="@{zipFile}" />
+			</then>
+		</if>
+		</sequential>
+		</for>
+		
+	</target>
+	
+	<target name="build-sencha">
+		<echo message="build.bat file in ${outdir.proj}/dev/lib/tmp/WebClientDev/"/>
+		<echo message="command line argument 1 - ${build.dir}../../"/>
+		<echo message="command line argument 2 - ${outdir.proj}/dev/lib/tmp/modules"/>
+		 <exec executable="${outdir.proj}/dev/lib/tmp/WebClientDev/build.bat">
+			<arg line="${build.dir}../../ ${outdir.proj}/dev/lib/tmp/WebClient"></arg>
+		 </exec>
+		 
+	</target>
+	
+	<target name="create-output" >             
+                                <!--Zip the main module-->
+                                <path id="cfgPath">
+                                                <fileset  dir="../../../metadata/">
+                                                <include name ="*/*"/>
+                                                                <include name="application_cfg.xml"/>
+                                                </fileset>
+                                </path>
+                                <property name="cfgPathProp"
+                                                refid="cfgPath"/>
+                                <echo message= "the cfg path is ${cfgPathProp}"/>
+                                <property name="regExp" 
+                                                value="&lt;Application(.*)name=&quot;([^&quot;]*)&quot;"/>
+                                <var name="cfgFile" unset="true"/>
+                                <loadfile property="cfgFile" srcFile="${cfgPathProp}"/>
+                                <propertyregex property="appName" input="${cfgFile}/dev/lib" regexp="${regExp}" select="\2"/>
+                                <echo message="The application name is ${appName}" />          
+                                
+                                <!--zip destfile="${outdir.proj}/dev/lib/tmp/${appName}.zip" basedir="${outdir.proj}/dev/lib/tmp/modules/" /-->
+                                
+                                <!--<exec executable="zip.exe"
+                                                dir="${outdir.proj}/dev/lib/tmp/modules/" >
+                                                <arg line="-r -s 5m ${outdir.proj}/dev/lib/tmp/${appName}.zip ."/>
+                                </exec>-->
+                                <delete dir="${outdir.proj}/dev/lib/tmp/modules" />  
+								<delete dir="${outdir.proj}/dev/lib/tmp/WebClientDev/" />								
+                </target>
+
+</project>

@@ -1,0 +1,15 @@
+element * CHECKEDOUT
+element \HelixUI\ConfigurationFilesClient\... .../main/LATEST 
+element \ConfigurationFilesClient  /main/LATEST
+element \WebClientInfrastructure\... /main/LATEST
+element \jcore\jcore_ant\...  JCORE_ANT__9.0.0.1
+element \Admin\... /main/LATEST
+element * /main/LATEST
+
+load \WebClientInfrastructure\extjs\frameworks\ext-6.5.2
+load \WebClientInfrastructure\extjs\packages\ext-core
+load \WebClientInfrastructure\extjs\packages\ext-core-theme
+load \WebClientInfrastructure\extjs\packages\log4ext
+load \HelixUI\ConfigurationFilesClient
+load \jcore\jcore_ant
+load \Admin\ABMS\vers_props_change_jenkins.bat

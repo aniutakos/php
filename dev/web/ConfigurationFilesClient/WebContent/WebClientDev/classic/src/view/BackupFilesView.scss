@@ -1,0 +1,182 @@
+.file-compare-input .x-form-trigger-wrap {
+  border: 0px;
+  border-color: white;
+  border-style: none;
+}
+
+.compare1-icon{
+  width: 20px!important;
+  height: 20px!important;
+  background-image: url(get-resource-path('icons/compare_1.svg'))!important;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.compare2-icon{
+  width: 20px!important;
+  height: 20px!important;
+  background-image: url(get-resource-path('icons/compare_2.svg'))!important;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.compare3-icon{
+  background-image: url(get-resource-path('icons/compare.svg'))!important;
+  background-repeat: no-repeat;
+}
+
+.compare1-checked-icon{
+  background-image: url(get-resource-path('icons/compare_1_checked.svg'))!important;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.compare2-checked-icon{
+  background-image: url(get-resource-path('icons/compare_2_checked.svg'))!important;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.restore-file-icon {
+  display: inline-block;
+  width: 20px!important;
+  height: 20px!important;
+  background: url(get-resource-path('icons/BR_restore.svg'))!important;
+  background-repeat: no-repeat;
+}
+
+.open-file-icon {
+  display: inline-block;
+  width: 20px!important;
+  height: 20px!important;
+  background: url(get-resource-path('icons/BR_open.svg'))!important;
+  background-repeat: no-repeat;
+}
+.download-file-icon {
+  display: inline-block;
+  width: 20px!important;
+  height: 20px!important;
+  background: url(get-resource-path('icons/download.svg'))!important;
+  background-repeat: no-repeat;
+}
+
+.delete-file-icon {
+  display: inline-block;
+  width: 20px!important;
+  height: 20px!important;
+  background: url(get-resource-path('icons/BR_delete_file.svg'))!important;
+  background-repeat: no-repeat;
+}
+
+.source-alarm-cell {
+  background: url(get-resource-path('icons/source_alarm.svg')) no-repeat 2px 7px;
+  padding-left: 10px;
+}
+
+.source-manual-cell {
+  background: url(get-resource-path('icons/source_manual.svg')) no-repeat 2px 7px;
+  padding-left: 10px;
+}
+
+.source-schedule-cell {
+  background: url(get-resource-path('icons/source_schedule.svg')) no-repeat 2px 7px;
+  padding-left: 10px;
+}
+
+.grey-label-20 {
+  font-weight:bold;
+  color:rgba(0,0,0,0.38);
+  font-family:"Open Sans";
+  font-size:20px;
+  line-height: 25px;
+  text-align:center;
+  display:block;
+ }
+
+@include extjs-button-small-ui(
+$ui: 'files-toolbar-button',
+$border-radius:5px,
+$background-color : white,
+$background-color-pressed : white,
+$border-color : black,
+$color: black,
+$font-size:14px
+);
+
+@include extjs-button-small-ui(
+$ui: 'files-toolbar-button2',
+$border-width : 0,
+$background-color : white,
+$background-color-over:  white,
+$background-color-focus-over: white,
+$background-color-focus: white,
+$background-color-pressed : white
+);
+
+@include extjs-button-small-ui(
+$ui: 'compare-button1',
+$background-color : lightgrey,
+$background-color-pressed : lightgrey,
+$color :black,
+$font-size: 14px,
+$border-radius:5px,
+$border-color :transparent
+);
+
+@include extjs-button-small-ui(
+$ui: 'compare-button2',
+$background-color : lightgrey,
+$background-color-pressed : lightgrey,
+$color :black,
+$font-size: 14px,
+$font-weight: bold,
+$border-radius: 0px,
+$border-color :transparent
+);
+
+.refresh-icon{
+  width: 24px!important;
+  height: 24px!important;
+  background-repeat: no-repeat;
+  background-image: url(get-resource-path('icons/ico_manualRefresh_off.svg'));
+}
+
+.autorefresh-icon{
+  width: 24px!important;
+  height: 24px!important;
+  background-repeat: no-repeat;
+  background-image: url(get-resource-path('icons/ico_autolRefresh_on.svg'));
+}
+
+.x-item-disabled, .x-item-disabled * {
+  pointer-events:all;
+}
+
+.grid-backup-files .x-action-col-icon{
+  //color: #5e5e5e;
+  //font-size: 18px;
+  height: 20px;
+  width: 21px;
+  cursor: pointer;
+}
+
+// to remove waiting spinner when grid is disabled
+.grid-backup-files .spinner {
+  border:0px
+}
+
+.grid-backup-files .x-grid-item-alt{
+  background-color: rgba(115,127,149,0.1);
+}
+
+.grid-backup-files .x-grid-item-selected .x-selmodel-column .x-grid-checkcolumn:after{
+  color:black!important;
+}
+.grid-backup-files .x-column-header-checkbox, .grid-backup-files .x-column-header-checkbox:after{
+  color:white!important;
+}
+
+.action-compare-column .x-column-header-inner {
+  padding-top: 7px;
+  padding-right: 1px;
+  padding-bottom: 6px;
+  padding-left: 2px;
+}

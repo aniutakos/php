@@ -1,0 +1,19 @@
+@include extjs-tab-panel-ui(
+$ui: 'workspace-tabs-ui',
+$tab-base-color: transparent,
+$ui-tab-background-color:white,
+$ui-tab-background-color-active:#B42E34,
+$ui-tab-color-active:#FFFFFF,
+$ui-tab-line-height:25px,
+$ui-tab-font-size:14px,
+$ui-tab-color:rgba(0,0,0,0.75),
+$ui-tab-padding: 4px 20px 4px 20px,
+$ui-tab-border-radius:5px 5px 0px 0px
+);
+
+
+@include extjs-tab-bar-ui(
+$ui: 'workspace-tabs-bar-ui',
+$ui-padding: 10px 0px 0px 2px,
+$ui-background-color:white
+);

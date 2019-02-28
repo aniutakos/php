@@ -1,0 +1,102 @@
+{
+    "lang": "en",
+
+    "About": {
+        "TabTitles": {
+            "Products": "Products",
+            "Legal": "Legal",
+            "ThirdParties": "Third Parties",
+            "System": "System"
+        },
+
+        "Texts": {
+            "AboutHelix": "About Helix",
+            "LicenseExpiredDaysFirstPart": "License expired in ",
+            "LicenseExpiredDaysSecondPart": " day(s)",
+            "LicenseHasExpired": "License has expired",
+            "ServerName": "Server: ",
+            "ServerTimeZone": "Server Time zone: ",
+            "ServerTimeZoneSupportDisabled": "Server Time Zone support disabled",
+            "UserTimeZone": "User Time zone: ",
+            "UserTimeZoneSupportDisabled": "User Time Zone support disabled",
+            "LicensedProducts": "Licensed Products:",
+            "Copyright": "Copyright: ",
+
+            "LicenseTypes": {
+                "EvaluationLicense": "Evaluation license",
+                "DevelopmentLicense": "Development license"
+            }
+        }
+    },
+
+    "TimeZones": {
+        "Titles": {
+            "UserTimeZone": "User Time Zone"
+        },
+
+        "Texts": {
+            "TimeZoneEffectReload": "In order for the settings to take effect, you should close and reopen all your clients"
+        },
+
+        "Buttons": {
+            "ReloadNow": "Reload Now",
+            "ReloadLater": "Reload Later"
+        }
+    },
+
+    "UserSettings": {
+        "UserSettingsMenu": "User Settings",
+        "Options": "Options",
+        "Help": "Help",
+        "ChangePassword": "Change Password",
+        "Log": "Log",
+        "All": "All",
+        "ErrorsOnly": "Errors Only",
+        "About": "About",
+        "Logout": "Logout",
+        "ServerTimeZone": "Server Time Zone",
+        "UserTimeZone": "User Time Zone",
+        "SelectTimeZone": "Time Zone",
+        "SelectLanguage": "Language",
+		"CheckMyTZTimeZone":"Check my local Time zone settings when I login",
+
+        "Titles": {
+           "UserTimeZone": "User Time Zone",
+           "UserLanguage": "User Language",
+           "UserSettings": "User Settings"
+        },
+
+        "Texts": {
+           "SettingEffectReload": "In order for the settings to take effect, you should close and reopen all your clients",
+           "SettingsError": "Unknown error. Can not set User Settings",
+		   "Warning":"Warning: Applying these settings requires <br/>a restart of all the client applications"
+        },
+
+        "Buttons": {
+            "Apply": "Apply",
+            "Cancel": "Cancel",
+            "Yes": "Yes",
+            "No": "No",
+            "Ok": "OK",
+            "ReloadNow": "Reload Now",
+            "ReloadLater": "Reload Later"
+        }
+    },
+	
+	"Logout":{
+		"Title":"Log Out",
+		"Message":"This will log you out of ALL Helix applications.<br/>Are you sure you want to continue?",
+		"Buttons": {       
+            "Yes": "Yes",
+            "No": "No"
+        }
+	},
+
+
+	"LevelPicker": {
+		"LevelLabel": "Level:",
+		"User": "User",
+		"Group": "Group",
+		"System": "System"
+	}
+}

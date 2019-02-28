@@ -1,0 +1,137 @@
+<application xmlns="http://wadl.dev.java.net/2009/02"
+             xmlns:t="http://cfm_server.rs.cfm.teoco.com/xsd"
+             xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <grammars>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                   targetNamespace="http://cfm_server.rs.cfm.teoco.com/xsd"
+                   elementFormDefault="qualified">
+            <xs:import namespace="http://cfm_server.rs.cfm.teoco.com/xsd" schemaLocation="./CFMServer.xsd"/>
+
+            <!-- getFile: Request and Response-->
+            <xs:element name="getFileRequest" type="t:GetFileRequest" />
+            <xs:element name="getFileResponse" type="t:GetFileResponse" />
+
+            <!-- deleteFiles: Request and Response-->
+            <xs:element name="deleteFilesRequest" type="t:DeleteFilesRequest" />
+            <xs:element name="deleteFilesResponse" type="t:DeleteFilesResponse" />
+
+            <!-- createScheduledJob: Request and Response-->
+            <xs:element name="createScheduledJobRequest" type="t:CreateScheduledJobRequest" />
+            <xs:element name="createScheduledJobResponse" type="t:CreateScheduledJobResponse" />
+
+            <!-- updateScheduledJob: Request and Response-->
+            <xs:element name="updateScheduledJobRequest" type="t:UpdateScheduledJobRequest" />
+            <xs:element name="updateScheduledJobResponse" type="t:UpdateScheduledJobResponse" />
+
+            <!-- deleteScheduledJob: Request and Response-->
+            <xs:element name="DeleteScheduledJobRequest" type="t:DeleteScheduledJobRequest" />
+            <xs:element name="DeleteScheduledJobResponse" type="t:DeleteScheduledJobResponse" />
+
+            <!-- suspendScheduledJob: Request and Response-->
+            <xs:element name="suspendScheduledJobRequest" type="t:SuspendScheduledJobRequest" />
+            <xs:element name="suspendScheduledJobResponse" type="t:SuspendScheduledJobResponse" />
+
+            <!-- resumeScheduledJob: Request and Response-->
+            <xs:element name="resumeScheduledJobRequest" type="t:ResumeScheduledJobRequest" />
+            <xs:element name="resumeScheduledJobResponse" type="t:ResumeScheduledJobResponse" />
+        </xs:schema>
+    </grammars>
+    
+    <resources base="http://pbg-lnx-dev-11:3600/ConfigurationFilesServer/services/">
+
+        <resource path="/ConfigurationFilesServerService">
+
+          <resource path="/getFile">
+                <method id="getFile" name="POST">
+                    <request>
+                        <representation mediaType="application/json" element="t:getFileRequest"/>
+                        <representation mediaType="application/xml" element="t:getFileRequest"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/json" element="t:getFileResponse"/>
+                        <representation mediaType="application/xml" element="t:getFileResponse"/>
+                    </response>
+                </method>
+            </resource>
+
+          <resource path="/deleteFiles">
+                <method id="deleteFiles" name="POST">
+                    <request>
+                        <representation mediaType="application/json" element="t:deleteFilesRequest"/>
+                        <representation mediaType="application/xml" element="t:deleteFilesRequest"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/json" element="t:deleteFilesResponse"/>
+                        <representation mediaType="application/xml" element="t:deleteFilesResponse"/>
+                    </response>
+                </method>
+            </resource>
+
+          <resource path="/createScheduledJob">
+                <method id="createScheduledJob" name="POST">
+                    <request>
+                        <representation mediaType="application/json" element="t:createScheduledJobRequest"/>
+                        <representation mediaType="application/xml" element="t:createScheduledJobRequest"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/json" element="t:createScheduledJobResponse"/>
+                        <representation mediaType="application/xml" element="t:createScheduledJobResponse"/>
+                    </response>
+                </method>
+            </resource>
+
+          <resource path="/updateScheduledJob">
+                <method id="updateScheduledJob" name="POST">
+                    <request>
+                        <representation mediaType="application/json" element="t:updateScheduledJobRequest"/>
+                        <representation mediaType="application/xml" element="t:updateScheduledJobRequest"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/json" element="t:updateScheduledJobResponse"/>
+                        <representation mediaType="application/xml" element="t:updateScheduledJobResponse"/>
+                    </response>
+                </method>
+            </resource>
+
+            <resource path="/deleteScheduledJob">
+                <method id="deleteScheduledJob" name="POST">
+                    <request>
+                        <representation mediaType="application/json" element="t:deleteScheduledJobRequest"/>
+                        <representation mediaType="application/xml" element="t:deleteScheduledJobRequest"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/json" element="t:deleteScheduledJobResponse"/>
+                        <representation mediaType="application/xml" element="t:deleteScheduledJobResponse"/>
+                    </response>
+                </method>
+            </resource>
+
+            <resource path="/suspendScheduledJob">
+                <method id="suspendScheduledJob" name="POST">
+                    <request>
+                        <representation mediaType="application/json" element="t:suspendScheduledJobRequest"/>
+                        <representation mediaType="application/xml" element="t:suspendScheduledJobRequest"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/json" element="t:suspendScheduledJobResponse"/>
+                        <representation mediaType="application/xml" element="t:suspendScheduledJobResponse"/>
+                    </response>
+                </method>
+            </resource>
+
+            <resource path="/resumeScheduledJob">
+                <method id="resumeScheduledJob" name="POST">
+                    <request>
+                        <representation mediaType="application/json" element="t:resumeScheduledJobRequest"/>
+                        <representation mediaType="application/xml" element="t:resumeScheduledJobRequest"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/json" element="t:resumeScheduledJobResponse"/>
+                        <representation mediaType="application/xml" element="t:resumeScheduledJobResponse"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+    </resources>
+
+</application>

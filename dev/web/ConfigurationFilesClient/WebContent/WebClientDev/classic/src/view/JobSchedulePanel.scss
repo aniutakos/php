@@ -1,0 +1,93 @@
+.x-form-num-field {
+    text-align: right;
+}
+
+.x-form-cb-label {
+    //height: 17px;
+    //width: 66px;
+    color: rgba(0, 0, 0, 0.75);
+    font-family: "Open Sans";
+    font-size: 12px;
+    font-weight: normal;
+    //vertical-align: baseline;
+    //line-height: 17px;
+}
+
+.user-label-class {
+    //height: 17px;
+    margin-top: 5px !important;
+    color: rgba(0, 0, 0, 0.75);
+    font-family: "Open Sans";
+    font-size: 12px;
+    font-weight: normal;
+    //vertical-align: baseline;
+    //line-height: 17px;
+}
+
+.x-form-item-label-default.x-form-item-label-top {
+    height: 19px;
+    width: 94px;
+    color: rgba(0, 0, 0, 0.38);
+    font-family: "Open Sans";
+    font-size: 14px;
+    line-height: 19px;
+    font-weight: normal !important;
+}
+
+.x-form-trigger-wrap-default {
+    color: rgba(0, 0, 0, 0.75);
+    border-color: rgba(0, 0, 0, 0.75);
+}
+
+.x-form-item-label-inner-timeresolution-text {
+    height: 19px;
+    width: 94px;
+    color: rgba(0, 0, 0, 0.38);
+    font-family: "Open Sans";
+    font-size: 14px;
+    line-height: 19px;
+    font-weight: normal !important;
+}
+
+// .weekdayRadiobutton {
+//     background-color: #4F555F;
+//     height: 30px;
+//     width: 30px;
+//     //background: cyan
+//     border-color: aqua;
+//     border: 3;
+// }
+// .weekdayRadiobutton:checked {
+//     background: yellowgreen;
+// }
+// .weekdayRadiobutton .x-form-radio {
+//     visibility: hidden;
+// }
+// .weekdayCheckboxbutton .x-form-checkbox {
+//     visibility: visible;
+// }
+.jobsLabelStyle {
+    //opacity: 0.5;
+    color: rgba(0, 0, 0, 0.38);
+    font-family: 'Open Sans';
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.endRadioButton input[type="radio"] {
+    margin: 0 !important;
+    background-color: blue !important;
+}
+
+.displayfield-base-body {
+    min-height: 9px !important;
+}
+
+.removeDisableStyle{
+    opacity: 1!important;
+}
+
+@include extjs-button-small-ui( $ui: 'weekday-button', $background-color: #4F555F, $background-color-pressed: #B42E34!important, $border-color: white, $color: white);
+//@include extjs-checkbox-ui( $ui: 'weekday-checkbox', $ui-label-color: yellowgreen, $ui-checkbox-size: 0);
+//@include extjs-label-ui( $ui: 'label-ui', $ui-font-color: yellowgreen);
+@include extjs-text-field-ui( $ui:'timeresolution-text', $ui-background-color:rgba(255, 255, 255, 0.75), $ui-color:rgba(0, 0, 0, 0.75), $ui-font-size:12px, $ui-border-radius: 0, $ui-border-style: dotted, $ui-padding: 2px 2px 2px 6px, $ui-height: 24px);

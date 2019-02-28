@@ -1,0 +1,33 @@
+<Security>
+<Roles>
+ 	<Role id="CFMRole" label="Configuration Director User" description="Allows you to see and backup configuration files" licenseGroup="Admin"/>
+ 	<Role id="CFMAdvRole" label="Configuration Director Advanced User" description="Allows you to see, backup, restore, and delete configuration files and to schedule backups" licenseGroup="Admin"/>
+</Roles>
+<Actions>
+ 	<Action id="open-CFM" label="Run Configuration Files Management" description="Run Configuration Files Management" moduleEntry="true">
+ 		<Role id="CFMRole"/>
+ 		<Role id="CFMAdvRole"/>
+ 	</Action>		
+ 	<Action id="manual-backup" label="Manual Backup" description="Perform manual backup of specific NE." >
+ 		<Role id="CFMRole"/>
+ 		<Role id="CFMAdvRole"/>
+ 	</Action>		
+ 	<Action id="manual-restore" label="Manual Restore" description="Perform manual restore from backup for specific NE.">
+ 		<Role id="CFMAdvRole"/>
+ 	</Action>		
+ 	<Action id="delete-files" label="Delete Files" description="Delete backup files.">
+ 		<Role id="CFMAdvRole"/>
+ 	</Action>		
+ 	<Action id="open-files" label="Open Files" description="Open backup files.">
+ 		<Role id="CFMRole"/>
+ 		<Role id="CFMAdvRole"/>
+ 	</Action>		
+ 	<Action id="compare-files" label="Compare Files" description="Compare backup files.">
+ 		<Role id="CFMRole"/>
+ 		<Role id="CFMAdvRole"/>
+ 	</Action>		
+ 	<Action id="manage-jobs" label="Manage Scheduled Jobs" description="Manage Scheduled Jobs.">
+ 		<Role id="CFMAdvRole"/>
+ 	</Action>		
+</Actions>
+</Security>

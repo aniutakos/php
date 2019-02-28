@@ -1,0 +1,91 @@
+@include extjs-panel-ui (
+    $ui:'job-definition-panel-ui',
+    $ui-padding: 20px,
+    $panel-header-font-family :'Open Sans',
+    $panel-header-font-size : 16px,
+    $panel-header-font-weight : normal
+    //$ui-body-background-color:red
+  //  $ui-header-background-color: #4F555F,
+  //  $panel-header-glyph-color:white,
+  //  $ui-header-inner-border-color :#72777f,
+  //  $ui-header-inner-border-width : 1px 0px 1px 0px
+    );
+
+@include extjs-button-small-ui(
+$ui: 'jobs-toolbar-button',
+$border-radius:5px,
+$background-color : white,
+$color:rgba(0,0,0,0.75),
+$background-color-pressed : white,
+$border-color : #72777f
+);
+
+@include extjs-text-field-ui (
+$ui: 'jobs-text-field-ui',
+//$border-radius:5px,
+$background-color : white,
+$ui-border-color :  #72777f
+//$form-field-disabled-opacity :0.5
+);
+
+@include extjs-text-field-ui (
+$ui: 'jobs-text-field-ui-not-editable',
+//$border-radius:5px,
+$background-color : white,
+$ui-border-color :  #72777f,
+$ui-color :  rgba(0,0,0,0.38)
+//$form-field-disabled-opacity :0.5
+);
+
+
+@include extjs-text-field-ui (
+$ui: 'jobs-text-field-description-ui',
+//$border-radius:5px,
+$background-color : white,
+$ui-border-color :  #72777f,
+$ui-height :64
+);
+
+
+.jobsLabelStyle{
+  //opacity: 0.5;
+  color: rgba(0,0,0,0.38);
+  font-family: 'Open Sans';
+  font-size: 14px;
+  font-weight: normal;
+  margin-bottom:2px; 
+}
+
+.notEditableLable .x-form-text-jobs-text-field-ui{
+  color: red!important;
+}
+.JobsFieldStyle{
+  opacity: 1;
+}
+.delete-file-icon {
+    display: inline-block;
+    width: 18px!important;
+    height: 20px!important;
+    background: url(get-resource-path('icons/BR_delete_file.svg'))!important;
+    background-repeat: no-repeat;
+  }
+
+  .job-add-ne-icon {
+    display: inline-block;
+    width: 18px!important;
+    height: 20px!important;
+    background: url(get-resource-path('icons/job_add_NE.svg'))!important;
+    background-repeat: no-repeat;
+  }
+
+  .backupJobTitleCls{
+    font-size: 16px;
+    font-family:'Open Sans';
+  }
+  .selectNesRadio input[type="radio"]{
+    margin: 0 !important;
+  }
+
+  .selectNesRadioDisabled{
+    opacity:1 !important;
+  }

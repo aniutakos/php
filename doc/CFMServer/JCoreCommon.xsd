@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="NetracExceptionDetails">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="MessageId" type="xs:string"/>
+                <xs:element name="MessageText" type="xs:string"/>
+                <xs:element name="StackTrace" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="PropertyOwner">
+        <xs:attribute name="level" use="required" type="LevelType"/>
+        <xs:attribute name="owner" type="xs:string"/>
+    </xs:complexType>
+
+    <xs:simpleType name="LevelType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="User"/>
+            <xs:enumeration value="Group"/>
+            <xs:enumeration value="System"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="OrderByConfiguration">
+        <xs:sequence>
+            <xs:element name="OrderBy" type="OrderBy" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="OrderBy">
+        <xs:attribute name="attributeName" type="xs:string" use="required"/>
+        <xs:attribute name="ascending" type="xs:boolean" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="MEValue">
+        <xs:sequence>
+            <xs:element name="key" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="attribute" type="MDAttribute" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string"/> <!-- Full MEV name, <app name>:<class name> e.g. JCore:User -->
+    </xs:complexType>
+
+    <xs:complexType name="MDAttribute">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="name" type="xs:string" use="required"/>
+                <xs:attribute name="operator" type="OperatorType" default="eq" use="optional"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:simpleType name="OperatorType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="eq"/>
+            <xs:enumeration value="ne"/>
+            <xs:enumeration value="gt"/>
+            <xs:enumeration value="ge"/>
+            <xs:enumeration value="lt"/>
+            <xs:enumeration value="le"/>
+            <xs:enumeration value="LIKE"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <xs:element name="MEValueHolder">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="MEValue" type="MEValue"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="XSDFiles">
+        <xs:sequence>
+            <xs:element name="file" type="XSDFile" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="XSDFile">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="document" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Text">
+        <xs:sequence>
+            <xs:element name="Header" type="xs:string" minOccurs="0"/>
+            <xs:element name="Line" type="xs:string" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="AnyType">
+        <xs:sequence>
+            <xs:element name="value" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="type" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

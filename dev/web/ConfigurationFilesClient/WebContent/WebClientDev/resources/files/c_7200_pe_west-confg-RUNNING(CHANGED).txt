@@ -1,0 +1,1044 @@
+
+!
+! Last configuration change at 20:21:23 GMT+2 Mon Sep 23 2013 by cisco
+!
+upgrade fpd auto
+version 15.0
+no service pad
+service timestamps debug datetime
+service timestamps log datetime
+service password-encryption
+!
+hostname C_7200_PE_West
+!
+boot-start-marker
+boot system disk2:c7200-adventerprisek9-mz.150-1.M3.bin
+boot-end-marker
+!
+logging buffered 50000
+enable secret 5 $1$1IlG$pOUwSSbMQqMRBiYs7/sY5.
+enable password 7 060F1F2D4D4C58
+!
+no aaa new-model
+!
+!
+!
+clock timezone GMT+2 2
+clock summer-time GMT+2 recurring last Sat Apr 0:00 1 Sat Nov 0:00
+!
+flow record DAVID
+ match ipv6 destination address
+ collect datalink dot1q vlan input
+ collect datalink mac source address input
+ collect routing vrf input
+ collect ipv6 source address
+ collect interface input
+ collect counter bytes long
+ collect counter packets long
+!
+!
+flow exporter DAVID
+ destination 10.50.233.119
+ transport udp 9999
+!
+!
+flow monitor DAVID
+ record DAVID
+ exporter DAVID
+ statistics packet protocol
+ statistics packet size
+!
+ip source-route
+!
+ip traffic-export profile Dima1
+! No outgoing interface configured
+! No destination mac-address configured
+ip cef
+!
+!
+ip vrf 888a
+ rd 888:1
+!
+ip vrf 888b
+ rd 888:2
+!
+ip vrf AAa**BBb
+!
+ip vrf BLUE
+ description CUSTOMER B
+ rd 200:200
+ route-target export 200:200
+ route-target import 200:200
+!
+ip vrf DOG
+ description Cot
+ maximum routes 50 75
+!
+ip vrf GREEN
+ description CUSTOMER A
+ rd 100:100
+ route-target export 100:100
+ route-target import 100:100
+!
+ip vrf RED
+ description Managment
+ rd 500:500
+ route-target export 500:500
+ route-target import 500:500
+!
+ip vrf SA_POC
+ rd 700:700
+ route-target export 700:700
+ route-target import 700:700
+!
+ip vrf YELLOW
+ description CUSTOMER C
+ rd 300:300
+ route-target export 300:300
+ route-target import 300:300
+!
+!
+!
+ip domain lookup source-interface Loopback222
+ip domain name teoco
+ip host C7206_IPv4 16.16.16.252
+ip name-server 10.50.23.10
+ipv6 host C7206_IPv6 1234:1234:1234:1234:206:D6FF:FEBB:6408
+no ipv6 cef
+!
+multilink bundle-name authenticated
+frame-relay switching
+mpls traffic-eng tunnels
+mpls traffic-eng logging lsp setups
+mpls traffic-eng logging lsp teardowns
+mpls traffic-eng reoptimize events link-up
+!
+!
+!
+!
+!
+!
+!
+!
+archive
+ path disk1:archive-<timestamp>
+ maximum 3
+ rollback filter adaptive
+ time-period 1400
+username cisco privilege 15 password 7 070C285F4D06
+!
+redundancy
+!
+process-max-time 52
+!
+ip ftp username ftp
+ip ftp password 7 075E731F1A5C4F
+ip tftp source-interface Loopback222
+ip ssh time-out 60
+ip ssh authentication-retries 5
+ip ssh version 2
+!
+track 1 ip sla 8 reachability
+!
+track 2 interface Tunnel2 line-protocol
+!
+class-map match-any DATA
+ match protocol http
+ match protocol ftp
+class-map match-all SA_PoC_OUT
+ match any 
+class-map match-all ctest1
+class-map match-all SA_PoC_bronze
+ match access-group name SA_PoC_UDP-50000
+class-map match-all SA_PoC_gold
+ match access-group name SA_PoC_UDP-50002
+class-map match-all SA_PoC_silver
+ match access-group name SA_PoC_UDP-50001
+!
+!
+policy-map SA_PoC_child
+ class SA_PoC_bronze
+   police rate 1000000 bps burst 100000 bytes
+     conform-action transmit 
+     exceed-action transmit 
+     violate-action drop 
+ class SA_PoC_silver
+   police rate 1250000 bps burst 125000 bytes
+     conform-action transmit 
+     exceed-action transmit 
+     violate-action drop 
+ class SA_PoC_gold
+   police rate 1500000 bps burst 150000 bytes
+     conform-action transmit 
+     exceed-action transmit 
+     violate-action drop 
+ class class-default
+  set ip dscp default
+policy-map test-2
+policy-map PRIORITY
+ class DATA
+    bandwidth 50
+  set precedence 5
+policy-map test
+ class ctest1
+policy-map SA_PoC_OUT
+ class SA_PoC_OUT
+    shape average 3700000
+ class class-default
+  set dscp default
+policy-map SA_PoC_IN
+ class class-default
+  service-policy SA_PoC_child
+!
+pseudowire-class pwclass_1
+ ! Incomplete config [Encapsulation not specified]
+!
+! 
+!
+!
+bridge irb
+!
+!
+!
+!
+!
+interface Loopback0
+ ip address 10.10.40.1 255.255.255.255
+ ip router isis 
+ shutdown
+ !
+!
+interface Loopback1
+ description loopback interface for testing
+ no ip address
+ !
+!
+interface Loopback4
+ no ip address
+ !
+!
+interface Loopback6
+ no ip address
+ ip flow monitor DAVID input
+ ip flow ingress
+ ipv6 address 2001::110:9BC2:ACC9:103/128
+ !
+!
+interface Loopback8
+ no ip address
+ shutdown
+ !
+!
+interface Loopback10
+ no ip address
+ !
+!
+interface Loopback12
+ no ip address
+ !
+!
+interface Loopback13
+ no ip address
+ !
+!
+interface Loopback14
+ no ip address
+ !
+!
+interface Loopback15
+ no ip address
+ !
+!
+interface Loopback50
+ no ip address
+ !
+!
+interface Loopback100
+ no ip address
+ !
+!
+interface Loopback123
+ no ip address
+ !
+!
+interface Loopback153
+ description dummy loopback interface 9000
+ bandwidth 9999000
+ ip address 11.0.0.0 255.255.255.255
+ !
+!
+interface Loopback202
+ description loopback for tunnel2 source
+ ip address 11.11.103.2 255.255.255.255
+ !
+!
+interface Loopback222
+ ip address 10.50.222.7 255.255.255.255
+ !
+!
+interface Loopback456
+ no ip address
+ !
+!
+interface Loopback789
+ no ip address
+ shutdown
+ !
+!
+interface Loopback2000
+ no ip address
+ shutdown
+ !
+!
+interface Loopback5000
+ no ip address
+ !
+!
+interface Loopback6000
+ no ip address
+ !
+!
+interface Loopback7000
+ description bogus IP added since AD discards Loopback without an IP address
+ ip vrf forwarding SA_POC
+ ip address 44.44.44.48 255.255.255.255
+ !
+!
+interface Loopback7001
+ description bogus IP added since AD discards Loopback without an IP address
+ ip vrf forwarding GREEN
+ ip address 44.44.44.49 255.255.255.255
+ !
+!
+interface Loopback8000
+ no ip address
+ shutdown
+ !
+!
+interface Loopback9000
+ no ip address
+ shutdown
+ !
+!
+interface Loopback10000
+ no ip address
+ !
+!
+interface Loopback20000
+ no ip address
+ !
+!
+interface Loopback30000
+ no ip address
+ !
+!
+interface Loopback33888
+ no ip address
+ !
+!
+interface Loopback40000
+ no ip address
+ shutdown
+ !
+!
+interface Loopback50000
+ no ip address
+ shutdown
+ !
+!
+interface Loopback54445
+ no ip address
+ !
+!
+interface Loopback65432
+ no ip address
+ !
+!
+interface Loopback80000
+ no ip address
+ !
+!
+interface Loopback90000
+ no ip address
+ !
+!
+interface Loopback111111
+ no ip address
+ !
+!
+interface Loopback123456
+ no ip address
+ !
+!
+interface Loopback400000
+ no ip address
+ !
+!
+interface Loopback776677
+ no ip address
+ !
+!
+interface Tunnel0
+ no ip address
+ !
+!
+interface Tunnel2
+ description Exclusive to FaultPro - To3550
+ ip address 10.7.7.5 255.255.255.252
+ no ip redirects
+ ip local-proxy-arp
+ ip irdp
+ ip route-cache same-interface
+ keepalive 1 3
+ cdp enable
+ tunnel source 11.11.103.2
+ tunnel destination 11.11.1.2
+ !
+!
+interface Tunnel7777
+ ip unnumbered Loopback0
+ mpls label protocol ldp
+ mpls ip
+ tunnel mode mpls traffic-eng
+ tunnel destination 10.10.90.1
+ tunnel mpls traffic-eng autoroute announce
+ tunnel mpls traffic-eng priority 1 1
+ tunnel mpls traffic-eng bandwidth 100
+ tunnel mpls traffic-eng path-option 1 dynamic
+ !
+ no routing dynamic
+!
+interface Tunnel9999
+ ip unnumbered Loopback0
+ mpls label protocol ldp
+ mpls ip
+ tunnel mode mpls traffic-eng
+ tunnel destination 10.10.20.1
+ tunnel mpls traffic-eng priority 1 1
+ tunnel mpls traffic-eng bandwidth 100
+ tunnel mpls traffic-eng path-option 1 dynamic
+ !
+ no routing dynamic
+!
+interface FastEthernet0/0
+ ip vrf forwarding SA_POC
+ ip address 6.200.200.200 255.255.255.0
+ ip flow ingress
+ ip flow egress
+ load-interval 30
+ duplex full
+ speed 100
+ !
+ service-policy input SA_PoC_IN
+ service-policy output SA_PoC_OUT
+!
+interface FastEthernet0/1
+ description Server network 16.16.16.0
+ no ip address
+ ip accounting output-packets
+ ip nbar protocol-discovery
+ ip flow ingress
+ duplex auto
+ speed auto
+ rmon promiscuous
+ rmon collection stats 3 owner config
+ random-detect 
+ isis protocol shutdown
+ !
+ max-reserved-bandwidth 100
+ ip rsvp bandwidth 256 256
+!
+interface FastEthernet0/1.1
+ description To Servers Switch C_2950
+ encapsulation dot1Q 1 native
+ ip address 16.16.16.252 255.255.255.0
+ ip flow ingress
+ vrrp 16 ip 16.16.16.16
+ standby 100 ip 16.16.16.254
+ standby 100 timers msec 100 msec 300
+ standby 100 priority 105
+ standby 100 preempt delay minimum 20
+ standby 100 name Servers-HSRP-100
+ standby 100 track 2 decrement 20
+!
+interface FastEthernet0/1.3
+ ip access-group 150 in
+ ip access-group 150 out
+!
+interface FastEthernet0/1.13
+ ip flow ingress
+!
+interface GigabitEthernet0/1
+ ip vrf forwarding 888a
+ ip address 88.88.88.88 255.255.255.0
+ duplex auto
+ speed auto
+ media-type rj45
+ no negotiation auto
+ vrrp 1 ip 88.88.88.1
+ vrrp 1 priority 254
+ bfd interval 500 min_rx 300 multiplier 3
+ standby 1 ip 88.88.88.2
+ standby 1 priority 255
+ !
+!
+interface GigabitEthernet0/2
+ ip vrf forwarding 888b
+ ip address 88.88.88.89 255.255.255.0
+ duplex auto
+ speed auto
+ media-type rj45
+ no negotiation auto
+ vrrp 1 ip 88.88.88.1
+ bfd interval 500 min_rx 300 multiplier 3
+ standby 1 ip 88.88.88.2
+ !
+!
+interface GigabitEthernet0/3
+ ip address 188.88.88.1 255.255.255.0
+ duplex auto
+ speed auto
+ media-type rj45
+ no negotiation auto
+ !
+!
+interface Serial1/0
+ no ip address
+ encapsulation frame-relay
+ serial restart-delay 0
+ clock rate 4800
+ frame-relay intf-type dce
+ !
+!
+interface Serial1/0.1 point-to-point
+ ip address 192.168.10.241 255.255.255.252
+ ip accounting output-packets
+ ip accounting precedence input
+ ip accounting precedence output
+ frame-relay interface-dlci 16   
+!
+interface Serial1/0.2 point-to-point
+ description Connection to vrf red
+ ip vrf forwarding RED
+ ip address 192.168.11.241 255.255.255.252
+ ip flow ingress
+ frame-relay interface-dlci 17   
+!
+interface Serial1/0.99 point-to-point
+ frame-relay interface-dlci 99   
+!
+interface Serial1/1
+ no ip address
+ encapsulation ppp
+ shutdown
+ mpls mtu 1530
+ mpls traffic-eng tunnels
+ mpls traffic-eng administrative-weight 100
+ mpls label protocol ldp
+ mpls ip
+ auto discovery qos 
+ keepalive 2
+ serial restart-delay 0
+ !
+ max-reserved-bandwidth 100
+ ip rsvp bandwidth 256 256
+!
+interface Serial1/2
+ ip vrf forwarding BLUE
+ no ip address
+ shutdown
+ serial restart-delay 0
+ !
+!
+interface Serial1/3
+ ip vrf forwarding YELLOW
+ no ip address
+ shutdown
+ serial restart-delay 0
+ !
+!
+interface POS2/0
+ mtu 1542
+ ip address 192.168.11.194 255.255.255.248
+ ip accounting precedence input
+ ip accounting precedence output
+ ip nbar protocol-discovery
+ ip router isis 
+ ip flow ingress
+ ip flow egress
+ mpls mtu 1530
+ mpls traffic-eng tunnels
+ mpls traffic-eng administrative-weight 100
+ mpls label protocol ldp
+ mpls ip
+ auto discovery qos 
+ keepalive 2
+ clock source internal
+ !
+ max-reserved-bandwidth 100
+ ip rsvp bandwidth 256 256
+!
+!
+router eigrp 100
+ !
+ address-family ipv4 vrf YELLOW 
+  redistribute connected
+ exit-address-family
+ !
+ address-family ipv4 vrf RED 
+  redistribute connected
+ exit-address-family
+ !
+ address-family ipv4 vrf GREEN 
+  redistribute connected
+ exit-address-family
+ !
+ address-family ipv4 vrf BLUE 
+  redistribute connected
+ exit-address-family
+ default-metric 10000 1 255 1 1500
+ network 192.168.10.240 0.0.0.3
+ network 192.168.11.192 0.0.0.3
+ redistribute isis level-1-2 route-map 172_30_LAN
+!
+router ospf 99
+ log-adjacency-changes
+ redistribute connected
+ network 10.7.7.4 0.0.0.3 area 1
+ distribute-list 99 out
+!
+router ospf 100
+ log-adjacency-changes
+!
+router isis
+ net 49.0001.0001.0004.00
+ log-adjacency-changes all
+ redistribute eigrp 100 route-map LOOP
+ passive-interface Loopback222
+ distance 254 clns
+!
+router rip
+ version 2
+ network 192.168.11.0
+ no auto-summary
+!
+router bgp 65100
+ bgp router-id 10.10.40.2
+ bgp log-neighbor-changes
+ neighbor MPLS peer-group
+ neighbor MPLS remote-as 65100
+ neighbor MPLS update-source Loopback0
+ neighbor 10.10.20.1 peer-group MPLS
+ neighbor 10.10.30.1 peer-group MPLS
+ neighbor 10.50.222.11 remote-as 65111
+ neighbor 192.168.11.142 peer-group MPLS
+ !
+ address-family ipv4
+  no synchronization
+  neighbor 10.10.20.1 activate
+  neighbor 10.10.30.1 activate
+  neighbor 10.50.222.11 activate
+  neighbor 192.168.11.142 activate
+  no auto-summary
+ exit-address-family
+ !
+ address-family vpnv4
+  neighbor MPLS send-community both
+  neighbor 10.10.20.1 activate
+  neighbor 10.10.30.1 activate
+  neighbor 192.168.11.142 activate
+ exit-address-family
+ !
+ address-family ipv4 vrf BLUE
+  no synchronization
+  redistribute connected
+ exit-address-family
+ !
+ address-family ipv4 vrf GREEN
+  no synchronization
+  redistribute connected
+ exit-address-family
+ !
+ address-family ipv4 vrf RED
+  no synchronization
+  redistribute connected
+ exit-address-family
+ !
+ address-family ipv4 vrf SA_POC
+  no synchronization
+  redistribute connected
+ exit-address-family
+ !
+ address-family ipv4 vrf YELLOW
+  no synchronization
+  redistribute connected
+ exit-address-family
+!
+ip forward-protocol nd
+ip http server
+no ip http secure-server
+!
+ip bgp-community new-format
+ip flow-cache timeout active 1
+ip flow-cache mpls label-positions
+ip flow-export source Loopback222
+ip flow-export version 9
+ip flow-export interface-names
+ip flow-export destination 10.50.225.128 9999
+ip flow-export destination 10.50.236.96 9999
+ip flow-aggregation cache as
+ export version 9
+!
+ip flow-top-talkers
+ top 10
+ sort-by bytes
+ cache-timeout 300000
+!
+!
+ip mrm manager MC_test1
+ip route 0.0.0.0 0.0.0.0 POS2/0
+ip route 2.2.2.2 255.255.255.255 10.10.91.2
+ip route 2.2.2.2 255.255.255.255 10.50.222.2
+ip route 10.10.20.1 255.255.255.255 192.168.11.193
+ip route 10.10.91.1 255.255.255.255 Tunnel2 20
+ip route 10.10.91.140 255.255.255.255 Tunnel2
+ip route 10.10.91.141 255.255.255.255 Tunnel2 20 permanent
+ip route 17.17.91.0 255.255.255.0 Tunnel2
+ip route 192.168.11.142 255.255.255.255 Tunnel7777
+ip route 192.168.162.0 255.255.255.0 10.50.222.2
+ip route 193.100.100.1 255.255.255.255 Tunnel9999
+ip route vrf RED 78.78.78.78 255.255.255.255 10.50.222.2
+!
+ip access-list extended SA_PoC_UDP-50000
+ permit udp any any eq 50000
+ip access-list extended SA_PoC_UDP-50001
+ permit udp any any eq 50001
+ip access-list extended SA_PoC_UDP-50002
+ permit udp any any eq 50002
+ip access-list extended SA_PoC_bronze
+ permit udp any any eq 50000
+ip access-list extended SA_PoC_gold
+ permit udp any any eq 50002
+ip access-list extended SA_PoC_silver
+ permit udp any any eq 50001
+!
+ip sla responder
+ip sla 1
+ udp-jitter 10.50.222.2 11111 source-ip 10.50.222.7
+ owner Zion
+ frequency 300
+ip sla schedule 1 life forever start-time now
+ip sla 2
+ udp-jitter 10.50.222.101 11111 source-ip 10.50.222.7
+ owner Zion
+ frequency 300
+ip sla schedule 2 life forever start-time now
+ip sla 3
+ udp-jitter 10.50.222.110 11111 source-ip 10.50.222.7
+ threshold 300
+ owner Zion
+ frequency 15
+ip sla schedule 3 life forever start-time now
+ip sla 4
+ udp-jitter 10.10.91.1 11111 source-ip 10.50.222.7
+ owner Zion
+ frequency 300
+ip sla schedule 4 life forever start-time now
+ip sla 5
+ udp-jitter 10.10.91.5 11111 source-ip 10.50.222.7
+ owner Zion
+ frequency 300
+ip sla schedule 5 life forever start-time now
+ip sla 30
+ udp-jitter 10.50.222.110 11111 source-ip 10.50.222.7
+ owner Zion
+ frequency 300
+ip sla schedule 30 life forever start-time now
+ip sla 1000
+ udp-jitter 10.50.222.1 4400 source-ip 10.50.222.7 codec g729a
+ owner CPU load
+ip sla 1001
+ udp-jitter 10.50.222.1 4400 source-ip 10.50.222.7 codec g729a
+ owner CPU load
+ frequency 30
+ip sla schedule 1001 life forever start-time now
+ip sla 1002
+ udp-jitter 10.50.222.1 4400 source-ip 10.50.222.7 codec g729a
+ owner CPU load
+ frequency 30
+ip sla schedule 1002 life forever start-time now
+ip sla 1003
+ udp-jitter 10.50.222.1 4400 source-ip 10.50.222.7 codec g729a
+ owner CPU load
+ frequency 30
+ip sla schedule 1003 life forever start-time now
+ip sla 1004
+ udp-jitter 10.50.222.1 4400 source-ip 10.50.222.7 codec g729a
+ owner CPU load
+ frequency 30
+ip sla schedule 1004 life forever start-time now
+ip sla 1005
+ udp-jitter 10.50.222.1 4400 source-ip 10.50.222.7 codec g729a
+ owner CPU load
+ frequency 30
+ip sla schedule 1005 life forever start-time now
+ip sla 1006
+ udp-jitter 10.50.222.1 4400 source-ip 10.50.222.7 codec g729a
+ owner CPU load
+ frequency 30
+ip sla schedule 1006 life forever start-time now
+ip sla 1007
+ udp-jitter 10.50.222.1 4400 source-ip 10.50.222.7 codec g729a
+ owner CPU load
+ frequency 30
+ip sla schedule 1007 life forever start-time now
+ip sla 1008
+ udp-jitter 10.50.222.1 4400 source-ip 10.50.222.7 codec g729a
+ owner CPU load
+ frequency 30
+ip sla schedule 1008 life forever start-time now
+ip sla 1009
+ udp-jitter 10.50.222.1 4400 source-ip 10.50.222.7 codec g729a
+ owner CPU load
+ frequency 30
+ip sla schedule 1009 life forever start-time now
+ip sla 1010
+ udp-jitter 10.50.222.1 4400 source-ip 10.50.222.7 codec g729a
+ owner CPU load
+ frequency 30
+ip sla schedule 1010 life forever start-time now
+ip sla 1011
+ udp-jitter 10.50.222.1 4400 source-ip 10.50.222.7 codec g729a
+ owner CPU load
+ frequency 30
+ip sla schedule 1011 life forever start-time now
+ip sla 1012
+ udp-jitter 10.50.222.1 4400 source-ip 10.50.222.7 codec g729a
+ owner CPU load
+ frequency 30
+ip sla schedule 1012 life forever start-time now
+ip sla 1013
+ udp-jitter 10.50.222.1 4400 source-ip 10.50.222.7 codec g729a
+ owner CPU load
+ frequency 30
+ip sla schedule 1013 life forever start-time now
+ip sla 1014
+ udp-jitter 10.50.222.1 4400 source-ip 10.50.222.7 codec g729a
+ owner CPU load
+ frequency 30
+ip sla schedule 1014 life forever start-time now
+ip sla 1015
+ udp-jitter 10.50.222.1 4400 source-ip 10.50.222.7 codec g729a
+ owner CPU load
+ frequency 30
+ip sla schedule 1015 life forever start-time now
+ip sla 1016
+ udp-jitter 10.50.222.1 4400 source-ip 10.50.222.7 codec g729a
+ owner CPU load
+ frequency 30
+ip sla schedule 1016 life forever start-time now
+ip sla 1017
+ udp-jitter 10.50.222.1 4400 source-ip 10.50.222.7 codec g729a
+ owner CPU load
+ frequency 30
+ip sla schedule 1017 life forever start-time now
+ip sla 1018
+ udp-jitter 10.50.222.1 4400 source-ip 10.50.222.7 codec g729a
+ owner CPU load
+ frequency 30
+ip sla schedule 1018 life forever start-time now
+ip sla 1019
+ udp-jitter 10.50.222.1 4400 source-ip 10.50.222.7 codec g729a
+ owner CPU load
+ frequency 30
+ip sla schedule 1019 life forever start-time now
+ip sla 1020
+ udp-jitter 10.50.222.1 4400 source-ip 10.50.222.7 codec g729a
+ owner CPU load
+ frequency 30
+ip sla schedule 1020 life forever start-time now
+ip sla group schedule 4 700-1000 schedule-period 3500 frequency 60 start-time now life forever
+!
+map-class frame-relay FRAG
+ frame-relay fragment 300
+ frame-relay fair-queue
+logging trap notifications
+access-list 11 permit 192.168.11.115
+access-list 99 permit 10.7.7.0 0.0.0.255
+access-list 101 permit ip any host 192.168.11.81
+access-list 101 permit ip any host 192.168.11.129
+access-list 101 permit ip host 192.168.11.81 any
+access-list 101 permit ip host 192.168.11.129 any
+access-list 103 permit ip any host 192.168.11.145
+access-list 103 permit ip host 192.168.11.145 any
+access-list 103 deny   ip host 192.168.11.145 host 192.168.11.97
+!
+!
+!
+!
+route-map LOOP permit 10
+ match ip address 50
+!
+route-map LOOP_RIVERSTONE permit 10
+!
+snmp-server user user1 read_group_noAuthNoPriv v3 
+snmp-server group amnon v3 auth 
+snmp-server group public v3 noauth read public 
+snmp-server group read_group v3 auth read configfile 
+snmp-server group esti_read_group v3 auth read configfile 
+snmp-server group read_group_noAuthNoPriv v3 noauth read configfile 
+snmp-server group esti_read_group_noAuthNoPriv v3 noauth read configfile 
+snmp-server view public iso included
+snmp-server view configfile iso included
+snmp-server view configfile mib-2 included
+snmp-server view configfile system included
+snmp-server view configfile cisco included
+snmp-server community public RO
+snmp-server community TTIreadwrite RW
+snmp-server ifindex persist
+snmp-server trap-source Loopback222
+snmp-server location Rosh HaAin
+snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
+snmp-server enable traps tty
+snmp-server enable traps gatekeeper
+snmp-server enable traps ospf state-change
+snmp-server enable traps ospf errors
+snmp-server enable traps xgcp
+snmp-server enable traps srp
+snmp-server enable traps envmon
+snmp-server enable traps isdn call-information
+snmp-server enable traps isdn layer2
+snmp-server enable traps isdn chan-not-avail
+snmp-server enable traps isdn ietf
+snmp-server enable traps ima
+snmp-server enable traps channel
+snmp-server enable traps aaa_server
+snmp-server enable traps atm pvc
+snmp-server enable traps atm subif
+snmp-server enable traps bgp
+snmp-server enable traps bstun
+snmp-server enable traps cnpd
+snmp-server enable traps config-copy
+snmp-server enable traps config
+snmp-server enable traps dial
+snmp-server enable traps dlsw
+snmp-server enable traps dsp card-status
+snmp-server enable traps entity
+snmp-server enable traps fru-ctrl
+snmp-server enable traps frame-relay multilink bundle-mismatch
+snmp-server enable traps frame-relay
+snmp-server enable traps frame-relay subif
+snmp-server enable traps hsrp
+snmp-server enable traps ipmobile
+snmp-server enable traps ipmulticast
+snmp-server enable traps mpls traffic-eng
+snmp-server enable traps mpls ldp
+snmp-server enable traps msdp
+snmp-server enable traps mvpn
+snmp-server enable traps pim neighbor-change rp-mapping-change invalid-pim-message
+snmp-server enable traps pppoe
+snmp-server enable traps cpu threshold
+snmp-server enable traps rsvp
+snmp-server enable traps ipsla
+snmp-server enable traps stun
+snmp-server enable traps syslog
+snmp-server enable traps mpls vpn
+snmp-server enable traps voice poor-qov
+snmp-server enable traps dnis
+snmp-server host 10.50.224.105 version 2c DevPortal01 udp-port 5162 
+snmp-server host 10.50.224.180 version 2c lnx-venus 
+snmp-server host 10.50.212.14 version 2c public 
+snmp-server host 10.50.212.14 version 2c public udp-port 7162 
+snmp-server host 10.50.212.15 version 2c public 
+snmp-server host 10.50.212.15 version 2c public udp-port 7162 
+snmp-server host 10.50.212.7 version 2c public 
+snmp-server host 10.50.212.7 version 2c public udp-port 7162 
+snmp-server host 10.50.212.7 version 2c public udp-port 8162 
+snmp-server host 10.50.212.8 version 2c public 
+snmp-server host 10.50.212.8 version 2c public udp-port 7162 
+snmp-server host 10.50.222.150 version 2c public 
+snmp-server host 10.50.222.150 version 2c public udp-port 7162 
+snmp-server host 10.50.222.5 version 2c public 
+snmp-server host 10.50.222.7 version 2c public 
+snmp-server host 10.50.224.150 version 2c public 
+snmp-server host 10.50.224.150 version 2c public udp-port 7162 
+snmp-server host 10.50.224.164 version 2c public udp-port 7162 
+snmp-server host 10.50.224.167 version 2c public 
+snmp-server host 10.50.224.167 version 2c public udp-port 7162 
+snmp-server host 10.50.224.173 version 2c public 
+snmp-server host 10.50.224.173 version 2c public udp-port 7162 
+snmp-server host 10.50.224.32 version 2c public 
+snmp-server host 10.50.224.32 version 2c public udp-port 7162 
+snmp-server host 10.50.224.53 version 2c public 
+snmp-server host 10.50.224.53 version 2c public udp-port 7162 
+snmp-server host 10.50.225.128 version 2c public 
+snmp-server host 10.50.225.150 version 2c public 
+snmp-server host 10.50.225.150 version 2c public udp-port 7162 
+snmp-server host 10.50.225.150 version 2c public udp-port 8162 
+snmp-server host 10.50.225.203 version 2c public 
+snmp-server host 10.50.225.203 version 2c public udp-port 7162 
+snmp-server host 10.50.225.203 version 2c public udp-port 8162 
+snmp-server host 10.50.225.47 version 2c public 
+snmp-server host 10.50.225.47 version 2c public udp-port 7162 
+snmp-server host 10.50.226.18 version 2c public 
+snmp-server host 10.50.226.18 version 2c public udp-port 7162 
+snmp-server host 10.50.226.18 version 2c public udp-port 8162 
+snmp-server host 10.50.236.96 version 2c public 
+snmp-server inform retries 10 timeout 100 pending 1000
+!
+mpls ldp router-id Loopback0
+!
+control-plane
+ !
+!
+rmon event 333 log trap public description new owner avid
+rmon event 2222 log trap public description "test test" owner jdoe
+!
+!
+!
+!
+gatekeeper
+ shutdown
+!
+alias exec shcpu sh proc cpu sorted | inc CPU
+alias exec traffic show ip nbar protocol-discovery 
+alias exec diff show archive config diff nvram:startup-config
+banner login 
+
+
+
+                      C_7200_PE_West IS A PM DEVICE
+                      #############################
+
+
+IF YOU WERE NOT EXPLICITLY AUTHORIZED TO LOGIN - PLEASE LOGOFF NOW.  
+
+
+Zion +972-54-7779012
+
+Itay +972-54-7779006
+
+
+!
+line con 0
+ exec-timeout 0 0
+ login local
+ stopbits 1
+line aux 0
+ stopbits 1
+line vty 0 4
+ exec-timeout 300 0
+ login local
+ length 0
+line vty 5 15
+ exec-timeout 120 0
+ timeout login response 300
+ password 7 110A1016141D
+ login
+line vty 16 18
+ login
+!
+process cpu statistics limit entry-percentage 30
+ntp server 10.50.222.5
+netconf ssh
+end

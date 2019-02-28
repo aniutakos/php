@@ -1,0 +1,161 @@
+<application xmlns="http://wadl.dev.java.net/2009/02"
+             xmlns:t="http://bcapi_server.rs.bcapi.teoco.com/xsd"
+             xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <grammars>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                   targetNamespace="http://bcapi_server.rs.bcapi.teoco.com/xsd"
+                   elementFormDefault="qualified">
+            <xs:import namespace="http://bcapi_server.rs.bcapi.teoco.com/xsd" schemaLocation="./BCAPIServer.xsd"/>
+            <xs:import namespace="http://bcapi_server.rs.bcapi.teoco.com/xsd" schemaLocation="./BCAPIMDClass.xsd"/>
+
+            <!-- getValues: Request and Response-->
+            <xs:element name="getValuesRequest" type="t:QueryParameters" />
+            <xs:element name="getValuesResponse" type="t:QueryResult" />
+
+            <!-- getValuesBySubstrings: Request and Response-->
+            <xs:element name="getValuesBySubstringsRequest" type="t:GetValuesBySubstringsRequest" />
+            <xs:element name="getValuesBySubstringsResponse" type="t:GetValuesBySubstringsResponse" />
+
+            <!-- convert2Sql: Request and Response-->
+            <xs:element name="convert2SqlRequest" type="t:Convert2SqlRequest" />
+            <xs:element name="convert2SqlResponse" type="t:Convert2SqlResult" />
+
+            <!-- setValues: Request and Response-->
+            <xs:element name="setValuesRequest" type="t:SetValues" />
+            <xs:element name="setValuesResponse" type="t:SetResult" />
+
+            <!-- updateValues: Request and Response-->
+            <xs:element name="updateValuesRequest" type="t:UpdateValues" />
+            <xs:element name="updateValuesResponse" type="t:UpdateResult" />
+
+            <!-- getMDClass: Request and Response-->
+            <xs:element name="getMDClassRequest" type="t:GetMDClass" />
+            <xs:element name="getMDClassResponse" type="t:GetMDClassResult" />
+
+            <!-- getDeletedEntitiesByEntityNames: Request and Response-->
+            <xs:element name="getDeletedEntitiesByEntityNamesRequest" type="t:GetDeletedEntitiesByEntityNames" />
+            <xs:element name="getDeletedEntitiesByEntityNamesResponse" type="t:GetDeletedEntitiesByEntityNamesResult" />
+
+            <!-- refreshMDClass: Request and Response-->
+            <xs:element name="refreshMDClassRequest" type="t:RefreshMDClass" />
+            <xs:element name="refreshMDClassResponse" type="t:RefreshMDClassResult" />
+        </xs:schema>
+    </grammars>
+    
+    <resources base="http://pbg-lnx-dev-11:3600/BCAPI/services/">
+        <resource path="/BCAPIRSService">
+            <resource path="/getValues">
+
+                <method id="getValues" name="POST">
+                    <request>
+                        <representation mediaType="application/json" element="t:getValuesRequest"/>
+                        <representation mediaType="application/xml" element="t:getValuesRequest"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/json" element="t:getValuesResponse"/>
+                        <representation mediaType="application/xml" element="t:getValuesResponse"/>
+                    </response>
+                </method>
+            </resource>
+
+           <resource path="/getValuesBySubstrings">
+
+                <method id="getValuesBySubstrings" name="POST">
+                    <request>
+                        <representation mediaType="application/json" element="t:getValuesBySubstringsRequest"/>
+                        <representation mediaType="application/xml" element="t:getValuesBySubstringsRequest"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/json" element="t:getValuesBySubstringsResponse"/>
+                        <representation mediaType="application/xml" element="t:getValuesBySubstringsResponse"/>
+                    </response>
+                </method>
+            </resource>
+
+            <resource path="/setValues">
+
+                <method id="setValues" name="POST">
+                    <request>
+                        <representation mediaType="application/json" element="t:setValuesRequest"/>
+                        <representation mediaType="application/xml" element="t:setValuesRequest"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/json" element="t:setValuesResponse"/>
+                        <representation mediaType="application/xml" element="t:setValuesResponse"/>
+                    </response>
+                </method>
+            </resource>
+
+            <resource path="/updateValues">
+
+                <method id="updateValues" name="POST">
+                    <request>
+                        <representation mediaType="application/json" element="t:updateValuesRequest"/>
+                        <representation mediaType="application/xml" element="t:updateValuesRequest"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/json" element="t:updateValuesResponse"/>
+                        <representation mediaType="application/xml" element="t:updateValuesResponse"/>
+                    </response>
+                </method>
+            </resource>
+
+            <resource path="/getDeletedEntitiesByEntityNames">
+                <method id="getDeletedEntitiesByEntityNames" name="POST">
+                    <request>
+                        <representation mediaType="application/json" element="t:getDeletedEntitiesByEntityNamesRequest"/>
+                        <representation mediaType="application/xml" element="t:getDeletedEntitiesByEntityNamesRequest"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/json" element="t:GetDeletedEntitiesByEntityNamesResult"/>
+                        <representation mediaType="application/xml" element="t:GetDeletedEntitiesByEntityNamesResult"/>
+                    </response>
+                </method>
+            </resource>
+
+            <resource path="/getMDClass">
+                <method id="getMDClass" name="POST">
+                    <request>
+                        <representation mediaType="application/json" element="t:getMDClassRequest"/>
+                        <representation mediaType="application/xml" element="t:getMDClassRequest"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/json" element="t:GetMDClassResult"/>
+                        <representation mediaType="application/xml" element="t:GetMDClassResult"/>
+                    </response>
+                </method>
+            </resource>
+
+            <resource path="/convert2Sql">
+
+                <method id="convert2Sql" name="POST">
+                    <request>
+                        <representation mediaType="application/json" element="t:convert2SqlRequest"/>
+                        <representation mediaType="application/xml" element="t:convert2SqlRequest"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/json" element="t:convert2SqlResponse"/>
+                        <representation mediaType="application/xml" element="t:convert2SqlResponse"/>
+                    </response>
+                </method>
+            </resource>
+
+            <resource path="/refreshMDClass">
+
+                <method id="refreshMDClass" name="POST">
+                    <request>
+                        <representation mediaType="application/json" element="t:refreshMDClassRequest"/>
+                        <representation mediaType="application/xml" element="t:refreshMDClassRequest"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/json" element="t:refreshMDClassResponse"/>
+                        <representation mediaType="application/xml" element="t:refreshMDClassResponse"/>
+                    </response>
+                </method>
+            </resource>
+
+        </resource>
+    </resources>
+
+
+</application>

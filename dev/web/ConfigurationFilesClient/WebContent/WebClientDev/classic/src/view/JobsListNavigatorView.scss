@@ -1,0 +1,143 @@
+@include extjs-display-field-ui( $ui:'left-panel-title-ui', $ui-font-size:18px, $ui-color:#FFFFFF);
+
+@include extjs-panel-ui (
+    $ui:'left-panel-jobs-ui',
+    $ui-body-background-color:#4F555F,
+    $ui-header-background-color: #4F555F,
+    $ui-header-color:#FFFFFF,
+    $panel-header-glyph-color:white,
+    $ui-header-inner-border-color :#72777f,
+    $ui-header-inner-border-width : 1px 0px 1px 0px
+    );
+
+@include extjs-button-small-ui(
+$ui: 'jobs-navigator-toolbar-button',
+//$border-radius:5px,
+$background-color : #4F555F,
+//$color:red!important,
+//$color:rg/ba(0,0,0,0.75),
+//$background-color-pressed : white,
+$border-color : #4F555F
+);
+
+@include extjs-toolbar-ui(
+$ui: 'navigator-jobs-toolbar',
+$ui-background-color :#4F555F
+);
+
+@include extjs-button-small-ui(
+    $ui: 'add-job-navigator',
+    $background-color :transparent,
+    $color :white,
+    $border-color :transparent,
+    $margin: 2px
+    );
+    .jobs-navigator-toolbar-button{
+        background-color: #4F555F;
+        border-color: #4F555F;
+        color: white;
+        opacity: 0.75;
+    }
+    .jobs-toolbar{
+        background-color: #4F555F;
+    }
+    .jobs-toolbar-line .x-surface-canvas{
+        background-color: #4F555F;
+    }
+.add-job-icon {
+    display: inline-block;
+    width: 20px!important;
+    height: 20px!important;
+    background: url(get-resource-path('icons/job_add.svg'))!important;
+    background-repeat: no-repeat;
+}
+.inactive-job-icon{
+    display: inline-block;
+    width: 15px!important;
+    height: 15px!important;
+    //color: white!important;
+    background: url(get-resource-path('icons/job_disabled.svg'))!important;
+}
+.delete-job-icon {
+    display: inline-block;
+    width: 20px!important;
+    height: 20px!important;
+    color: white!important;
+    background: url(get-resource-path('icons/delete_job.svg'))!important;
+    //background: url(get-resource-path('icons/job_add.svg'))!important;
+
+    background-repeat: no-repeat;
+  }
+  .jobs-grid .spinner {
+    border:0px
+  }
+  
+  .jobs-grid .x-grid-item-alt{
+    background-color: rgba(115,127,149,0.1);
+  }
+//   .jobs-grid .x-grid-item-selected {
+//     //background-color: rgba(255,255,255,0.3) !important;
+//     background-color: red!important;
+//  }
+
+ 
+  .jobs-grid .x-column-header-checkbox .x-column-header-checkbox:after, .jobs-grid .x-grid-checkcolumn:after{
+    color:white!important;
+  }
+  
+//   .jobs-grid .x-grid-item-selected .x-selmodel-column .x-grid-checkcolumn:after{
+//     color:black!important;
+//   }
+//   .jobs-grid .x-column-header-checkbox, .jobs-grid .x-column-header-checkbox:after{
+//     color:white!important;
+//   }
+  
+.jobs-grid{
+    background-color: #4F555F;
+}
+
+.jobs-grid .x-grid-cell-inner {
+    color: white!important;
+}
+.jobs-grid .x-grid-view{
+    background-color: #4F555F;
+}
+
+
+.jobs-grid .x-grid-item-alt {
+    background-color: rgba(255, 255, 255, 0.1)!important;// rgba(79, 85, 95, 0.5)
+   // background-color: rgba(255, 255, 255, 0.1);
+}
+
+// .x-grid-item .x-grid-item-alt .x-grid-item-selected{
+//     background-color: red!important;
+//  }
+
+.jobs-grid .x-grid-item {
+    background-color: #4F555F;
+}
+
+.x-panel .jobs-grid {
+    background: rgba(79, 85, 95, 0.5) !important; //panel body
+     ::-webkit-scrollbar {
+        width: 11px;
+    }
+     ::-webkit-scrollbar-button {
+        display: none;
+    }
+     ::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: #9ca0a5;
+    }
+     ::-webkit-scrollbar-track-piece {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+}
+
+  
+//   .jobs-grid .x-grid-item-selected .x-selmodel-column .x-grid-checkcolumn:after{
+//     color:black!important;
+//   }
+//   .jobs-grid .x-column-header-checkbox, .jobs-grid .x-column-header-checkbox:after{
+//     color:white!important;
+//   }

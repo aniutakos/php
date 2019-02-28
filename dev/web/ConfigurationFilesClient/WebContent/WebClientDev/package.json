@@ -1,0 +1,33 @@
+{
+  "requires": true,
+  "lockfileVersion": 1,
+  "dependencies": {
+    "fs-access": {
+      "integrity": "sha1-1qh/JiJxzv6+wwxVNAf7mV2od3o=",
+      "requires": {
+        "null-check": "1.0.0"
+      },
+      "resolved": "https://registry.npmjs.org/fs-access/-/fs-access-1.0.1.tgz",
+      "version": "1.0.1"
+    },
+    "isexe": {
+      "integrity": "sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=",
+      "resolved": "https://registry.npmjs.org/isexe/-/isexe-2.0.0.tgz",
+      "version": "2.0.0"
+    },
+    "karma-chrome-launcher": "^2.2.0",
+    "null-check": {
+      "integrity": "sha1-l33/1xdgErnsMNKjnbXPcqBDnt0=",
+      "resolved": "https://registry.npmjs.org/null-check/-/null-check-1.0.0.tgz",
+      "version": "1.0.0"
+    },
+    "which": {
+      "integrity": "sha512-HxJdYWq1MTIQbJ3nw0cqssHoTNU267KlrDuGZ1WYlxDStUtKUhOaJmh112/TZmHxxUfuJqPXSOm7tDyas0OSIQ==",
+      "requires": {
+        "isexe": "2.0.0"
+      },
+      "resolved": "https://registry.npmjs.org/which/-/which-1.3.1.tgz",
+      "version": "1.3.1"
+    }
+  }
+}
